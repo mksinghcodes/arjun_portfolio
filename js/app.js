@@ -69,7 +69,7 @@ function el(tag, attrs = {}, children = []) {
 }
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const uid = (p = 'id') => p + '-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+// uid, nowISO, and todayISO are defined globally in js/data.js
 const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
 /* Live navbar height, read from the published --nav-h variable. The box
    shrinks once the page is scrolled, so offsets must be read at use time. */
@@ -80,8 +80,6 @@ function navOffset(extra) {
 }
 const deep = (o) => JSON.parse(JSON.stringify(o));
 const debounce = (fn, ms = 240) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
-const nowISO = () => new Date().toISOString();
-const todayISO = () => new Date().toISOString().slice(0, 10);
 
 function money(n, cur = 'AED') {
   const v = Number(n) || 0;
@@ -604,7 +602,7 @@ function renderMarquee() {
 function renderHeroStats() {
   const host = byId('heroStats');
   if (!host) return;
-  const stats = (DB.stats || []).slice(0, 4);
+  const stats = (DB.stats || (DB.profile && DB.profile.stats) || []).slice(0, 4);
   host.innerHTML = stats.map((s) => `
     <div class="hero__meta-item">
       <b data-count="${Number(s.value) || 0}" data-suffix="${esc(s.suffix || '')}">0</b>
@@ -622,37 +620,48 @@ function renderAbout() {
     hl.innerHTML = (p.highlights || []).map((h) => `
       <li style="display:flex;gap:10px;align-items:flex-start">
         <span style="color:var(--cyan);flex:none;margin-top:2px">${icon('check', 16)}</span>
-        <span style="font-size:.885rem;color:var(--text-2)">${esc(h)}</span>
+        <span style="font-size:.885rem;color:var(--text-2);line-height:1.45">${esc(h)}</span>
       </li>`).join('');
   }
   const comp = byId('aboutCompetencies');
-  if (comp) comp.innerHTML = (p.competencies || []).map((c) => `<span class="chip" style="cursor:default">${esc(c)}</span>`).join('');
+  if (comp) {
+    comp.innerHTML = (p.competencies || []).map((c) => `
+      <span class="chip" style="cursor:default;background:var(--card-bg);border:1px solid var(--border);padding:6px 12px;font-size:.82rem">
+        <span style="color:var(--cyan);margin-right:5px">●</span>${esc(c)}
+      </span>`).join('');
+  }
 
   const aw = byId('aboutAwards');
   if (aw) {
-    const awards = [
-      { title: 'NEBOSH Award in Health & Safety at Work', org: 'DAMAC · 03 Jan 2020' },
-      { title: 'DAMAC Appreciation Award', org: 'DAMAC Hotel & Resorts' },
-      { title: "D'crowned For The Month Appreciation Award", org: 'DAMAC Hotel & Resorts' },
-      { title: 'Employee of the Month Award', org: 'Green Point Technical Services' },
-      { title: 'Employee of the Month Award', org: 'LOAMS' }
+    const awardsList = (DB.awards && DB.awards.length) ? DB.awards : [
+      { title: 'NEBOSH Award in Health & Safety at Work', issuer: 'DAMAC / NEBOSH — 03 Jan 2020', desc: 'Outstanding safety leadership' },
+      { title: 'DAMAC Appreciation Award', issuer: 'DAMAC Hotel & Resorts', desc: 'Excellence in engineering operations' },
+      { title: 'Employee Of Month Award', issuer: 'Green Point Technical Services', desc: 'Technical facility operations' },
+      { title: "D'crowned For The Month Appreciation Award", issuer: 'DAMAC Hotel & Resorts', desc: 'Zero-downtime maintenance' },
+      { title: 'Employee of Month Award', issuer: 'LOAMS', desc: 'Owner association management' }
     ];
-    aw.innerHTML = awards.map((a) => `
-      <li style="display:flex;gap:12px;align-items:flex-start">
-        <span class="contact-card__icon" style="width:36px;height:36px;border-radius:11px;color:var(--warn);background:var(--warn-bg);border-color:rgba(245,158,11,.3)">${icon('award', 17)}</span>
-        <span><b style="font-size:.88rem;display:block">${esc(a.title)}</b><span style="font-size:.78rem;color:var(--text-3)">${esc(a.org)}</span></span>
+    aw.innerHTML = awardsList.map((a) => `
+      <li style="display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border)">
+        <span class="contact-card__icon" style="width:36px;height:36px;border-radius:11px;color:var(--warn);background:var(--warn-bg);border-color:rgba(245,158,11,.3);flex:none">${icon('award', 17)}</span>
+        <span style="flex:1">
+          <b style="font-size:.88rem;display:block">${esc(a.title)}</b>
+          <span style="font-size:.78rem;color:var(--text-3)">${esc(a.issuer || a.org || '')}</span>
+          ${a.desc ? `<span style="font-size:.75rem;color:var(--text-2);display:block;margin-top:2px">${esc(a.desc)}</span>` : ''}
+        </span>
       </li>`).join('');
   }
   const goals = byId('aboutGoals');
-  if (goals) goals.textContent = p.goals;
+  if (goals) goals.textContent = p.goals || p.objective;
 
   const facts = byId('aboutFacts');
   if (facts) {
     const f = [
-      { l: 'Based in', v: p.address },
+      { l: 'Experience', v: '13+ Years FM & Property' },
+      { l: 'Location', v: p.address || 'Business Bay, Dubai, UAE' },
+      { l: 'Driving Licence', v: 'UAE LMV (17 Jan 2017)' },
+      { l: 'Current Role', v: p.currentAt || 'Aldar Property, UAE' },
       { l: 'Languages', v: (p.languages || []).join(', ') },
-      { l: 'Licence', v: p.drivingLicence },
-      { l: 'Current role at', v: p.currentAt }
+      { l: 'ISO Audits', v: 'ISO 14001, 9001, 45001' }
     ];
     facts.innerHTML = f.map((x) => `
       <div class="neu" style="padding:12px">
@@ -1331,15 +1340,16 @@ function woDetail(id) {
 function renderCredentials() {
   const certs = byId('certList');
   if (certs) {
-    certs.innerHTML = DB.certifications.map((c, i) => `
+    certs.innerHTML = (DB.certifications || []).map((c, i) => `
       <div class="glass card card--hover" style="padding:14px;display:flex;gap:13px;align-items:flex-start" data-reveal="fade" data-delay="${i % 5}">
-        <span class="contact-card__icon" style="width:40px;height:40px;border-radius:12px">${icon('award', 18)}</span>
+        <span class="contact-card__icon" style="width:40px;height:40px;border-radius:12px;color:var(--cyan);background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.3)">${icon('shield', 18)}</span>
         <span style="flex:1;min-width:0">
           <b style="display:block;font-size:.9rem;line-height:1.35">${esc(c.name)}</b>
           <span style="display:block;font-size:.78rem;color:var(--text-3);margin-top:3px">${esc(c.issuer)}</span>
           <span class="row" style="gap:6px;margin-top:8px">
             ${c.year && c.year !== '—' ? `<span class="badge badge--muted">${esc(c.year)}</span>` : ''}
             <span class="badge ${c.status === 'Active' ? 'badge--ok' : 'badge--muted'}">${esc(c.status || 'Active')}</span>
+            ${c.credential ? `<span class="badge badge--info" style="font-size:.68rem">${esc(c.credential)}</span>` : ''}
           </span>
         </span>
         <span class="row" style="gap:5px;flex:none">
@@ -1348,32 +1358,35 @@ function renderCredentials() {
         </span>
       </div>`).join('');
   }
+
   const edu = byId('eduList');
   if (edu) {
-    edu.innerHTML = DB.education.map((e) => `
+    edu.innerHTML = (DB.education || []).map((e) => `
       <div class="glass card card--hover" style="padding:15px" data-reveal="fade">
         <div class="row" style="gap:12px;align-items:flex-start">
           <span class="contact-card__icon" style="width:40px;height:40px;border-radius:12px;color:var(--violet);background:var(--violet-bg);border-color:rgba(139,92,246,.3)">${icon('book', 18)}</span>
           <span style="flex:1">
             <b style="display:block;font-size:.92rem">${esc(e.degree)}</b>
-            <span style="display:block;font-size:.8rem;color:var(--text-3);margin-top:3px">${esc(e.institution)} · ${esc(e.location || '')}</span>
+            <span style="display:block;font-size:.8rem;color:var(--text-3);margin-top:3px">${esc(e.institution)} — ${esc(e.location || '')}</span>
             ${e.notes ? `<span style="display:block;font-size:.78rem;color:var(--text-2);margin-top:6px">${esc(e.notes)}</span>` : ''}
           </span>
           <span class="badge badge--cyan" style="flex:none">${esc(e.year)}</span>
         </div>
       </div>`).join('');
   }
+
   const tr = byId('trainingList');
   if (tr) {
-    const trainings = DB.certifications.filter((c) => /training|diploma|licence|tot|first aid|fire warden/i.test(c.name) || /CTEVT|Master Mind|DCD/.test(c.issuer));
-    tr.innerHTML = trainings.map((c) => `
-      <div class="row row--between" style="gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:12px" data-reveal="fade">
+    // Show the 5 Awards and Accolades in trainingList / Awards card
+    const items = (DB.awards && DB.awards.length) ? DB.awards : (DB.certifications || []);
+    tr.innerHTML = items.map((a) => `
+      <div class="row row--between" style="gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--card-bg)" data-reveal="fade">
         <span style="min-width:0">
-          <b style="display:block;font-size:.85rem">${esc(c.name)}</b>
-          <span style="font-size:.75rem;color:var(--text-3)">${esc(c.issuer)}</span>
+          <b style="display:block;font-size:.85rem">${esc(a.title || a.name)}</b>
+          <span style="font-size:.75rem;color:var(--text-3)">${esc(a.issuer || a.org || '')}</span>
         </span>
-        <span class="badge badge--muted" style="flex:none">${esc(c.year || '—')}</span>
-      </div>`).join('') || '<p style="font-size:.85rem;color:var(--text-3)">No separate training records.</p>';
+        <span class="badge badge--warn" style="flex:none">${esc(a.year || (a.date ? a.date.slice(0, 4) : 'Award'))}</span>
+      </div>`).join('');
   }
   initReveal();
 }
@@ -2097,6 +2110,34 @@ function pdfFallbackPrint(title, html) {
   w.document.close();
   toast('warn', 'PDF engine offline', 'Opened a print-ready view — choose “Save as PDF”.');
 }
+
+function showResumePreviewModal() {
+  const bodyHtml = `
+    <div style="max-height:72vh;overflow-y:auto;padding:12px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border)">
+      ${resumeHtml()}
+    </div>
+  `;
+
+  openModal({
+    title: 'Arjun Singh — Official Curriculum Vitae',
+    wide: true,
+    body: bodyHtml,
+    footer: `
+      <div class="row row--between" style="width:100%;gap:10px">
+        <span style="font-size:.82rem;color:var(--text-3)">Facilities Management • Aldar • Deyaar • DAMAC</span>
+        <div class="row" style="gap:8px">
+          <button class="btn btn--ghost btn--sm" type="button" onclick="window.print()">${icon('print', 14)} Print CV</button>
+          <button class="btn btn--primary btn--sm" id="cvModalDownloadPdf" type="button">${icon('download', 14)} Download PDF</button>
+        </div>
+      </div>
+    `,
+    onOpen: (modalEl) => {
+      const dlBtn = modalEl.querySelector('#cvModalDownloadPdf');
+      if (dlBtn) dlBtn.addEventListener('click', () => { downloadResume(); });
+    }
+  });
+}
+
 function downloadResume() {
   const p = DB.profile;
   if (!pdfReady()) {
@@ -2155,13 +2196,91 @@ function downloadResume() {
 }
 function resumeHtml() {
   const p = DB.profile;
-  return `<h1>${esc(p.name)}</h1><div class="muted">${esc(p.title)} · ${esc(p.email)} · ${esc(p.phone)} · ${esc(p.address)}</div>
-    <h2>Profile Summary</h2><p>${esc(p.summary)}</p>
-    <h2>Core Competencies</h2><p>${p.competencies.map(esc).join(' • ')}</p>
-    <h2>Professional Experience</h2>${DB.experience.map((e) => `<h3>${esc(e.company)} — ${esc(e.title)} <span class="muted">(${esc(e.period)})</span></h3><ul>${(e.points || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`).join('')}
-    <h2>Certifications</h2><ul>${DB.certifications.map((c) => `<li>${esc(c.name)} — ${esc(c.issuer)} ${c.year && c.year !== '—' ? '(' + esc(c.year) + ')' : ''}</li>`).join('')}</ul>
-    <h2>Education</h2><ul>${DB.education.map((e) => `<li>${esc(e.degree)} — ${esc(e.institution)}, ${esc(e.location)} (${esc(e.year)})</li>`).join('')}</ul>
-    <h2>Awards</h2><ul><li>NEBOSH Award in Health &amp; Safety at Work — DAMAC, Jan 2020</li><li>DAMAC Appreciation Award — DAMAC Hotel &amp; Resorts</li><li>Employee of the Month — Green Point Technical Services</li><li>Employee of the Month — LOAMS</li></ul>`;
+  const awards = DB.awards || [];
+  const certs = DB.certifications || [];
+  const edu = DB.education || [];
+  const exp = DB.experience || [];
+
+  return `
+    <div style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#0F172A;line-height:1.5">
+      <div style="border-bottom:2px solid #0EA5E9;padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <h1 style="font-size:1.6rem;font-weight:800;color:#0F172A;margin:0 0 4px">${esc(p.name)}</h1>
+          <div style="font-size:.95rem;font-weight:700;color:#0369A1;margin-bottom:6px">${esc(p.headline || p.title)}</div>
+          <div style="font-size:.82rem;color:#475569;display:flex;flex-wrap:wrap;gap:12px">
+            <span><b>Email:</b> ${esc(p.email)}</span>
+            <span><b>Mobile:</b> ${esc(p.phone)}</span>
+            <span><b>Location:</b> ${esc(p.address)}</span>
+            <span><b>Licence:</b> ${esc(p.drivingLicence)}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px">
+        <h2 style="font-size:1.05rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Profile Summary</h2>
+        <p style="font-size:.86rem;color:#334155;margin:0 0 8px">${esc(p.summary)}</p>
+        <ul style="margin:0;padding-left:18px;font-size:.82rem;color:#334155;display:grid;grid-template-columns:1fr;gap:4px">
+          ${(p.highlights || []).map(h => `<li>${esc(h)}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div style="margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <h2 style="font-size:.95rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Core Competencies</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            ${(p.competencies || []).map(c => `<span style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:6px;padding:3px 8px;font-size:.76rem;font-weight:600;color:#1E293B">${esc(c)}</span>`).join('')}
+          </div>
+        </div>
+        <div>
+          <h2 style="font-size:.95rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Soft Skills &amp; IT Skills</h2>
+          <div style="font-size:.78rem;color:#334155;margin-bottom:6px">
+            <b>Soft Skills:</b> ${(p.softSkills || []).join(' • ')}
+          </div>
+          <div style="font-size:.78rem;color:#334155">
+            <b>IT Skills:</b> ${(p.itSkills || []).join(' • ')}
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px">
+        <h2 style="font-size:1.05rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.06em">Work Experience</h2>
+        ${exp.map(e => `
+          <div style="margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline">
+              <b style="font-size:.92rem;color:#0F172A">${esc(e.company)}</b>
+              <span style="font-size:.8rem;font-weight:700;color:#0284C7">${esc(e.period)}</span>
+            </div>
+            <div style="font-size:.84rem;font-weight:600;color:#0E7490;margin-bottom:4px">${esc(e.title)} <span style="font-size:.78rem;font-weight:400;color:#64748B">(${esc(e.location || '')})</span></div>
+            <ul style="margin:0;padding-left:18px;font-size:.8rem;color:#334155">
+              ${(e.points || []).map(pt => `<li>${esc(pt)}</li>`).join('')}
+            </ul>
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <h2 style="font-size:.95rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Awards &amp; Accolades</h2>
+          <ul style="margin:0;padding-left:18px;font-size:.78rem;color:#334155">
+            ${awards.map(a => `<li><b>${esc(a.title)}</b> — ${esc(a.issuer || a.org || '')} ${a.date ? `(${esc(a.date)})` : ''}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h2 style="font-size:.95rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Education</h2>
+          <ul style="margin:0;padding-left:18px;font-size:.78rem;color:#334155">
+            ${edu.map(ed => `<li><b>${esc(ed.degree)}</b> (${esc(ed.year)})<br><span style="color:#64748B">${esc(ed.institution)} — ${esc(ed.location || '')}</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-size:.95rem;font-weight:800;color:#0369A1;border-bottom:1px solid #CBD5E1;padding-bottom:4px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em">Trainings &amp; Certifications</h2>
+        <ul style="margin:0;padding-left:18px;font-size:.78rem;color:#334155;display:grid;grid-template-columns:1fr 1fr;gap:4px">
+          ${certs.map(c => `<li><b>${esc(c.name)}</b><br><span style="color:#64748B">${esc(c.issuer)} ${c.year ? `(${esc(c.year)})` : ''}</span></li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
 }
 function projectPdf(id) {
   const p = DB.projects.find((x) => x.id === id);
@@ -3666,6 +3785,7 @@ function panelSettings(host) {
     saveDB('silent'); logActivity('Reset all data to seed dataset', 'settings');
     toast('ok', 'Data reset', 'Seeded CV dataset restored.');
     applyTheme(DB.settings.theme); applyI18n(); renderPublicSite(); renderDashCounts(); showDash('overview');
+  updateAuthUI();
   }));
   byId('pwSave').addEventListener('click', changePassword);
   byId('pwLogout').addEventListener('click', logout);
@@ -3763,6 +3883,7 @@ function logout() {
   saveDB('silent');
   showView('public');
   toast('ok', 'Signed out', 'Your session has ended.');
+  updateAuthUI();
   renderNotifBadge();
 }
 function restoreSession() {
@@ -3816,6 +3937,84 @@ function renderPublicSite() {
   requestAnimationFrame(() => { $$('[data-fill]').forEach((f) => { f.style.width = f.dataset.fill + '%'; }); });
   initReveal(); initCounters();
 }
+
+/* ==========================================================================
+   Role-Based UI Control & Left Menu Access Guard
+   Rule: Left side menu will display ONLY when logged in with admin or superadmin
+   ========================================================================== */
+function updateAuthUI() {
+  const isAuth = !!(DB && DB.auth && DB.auth.session);
+  const role = isAuth ? (DB.auth.session.role || 'Viewer') : '';
+  const isAdmin = isAuth && (role === 'Super Admin' || role === 'Admin');
+
+  // 1. Left Menu Toggle Button in Header (Visible ONLY when logged in as admin or superadmin)
+  const lmBtn = byId('leftMenuBtn');
+  if (lmBtn) {
+    if (isAdmin) {
+      lmBtn.style.display = 'inline-flex';
+      lmBtn.classList.remove('hide');
+      lmBtn.setAttribute('title', `CMS Left Menu (${role})`);
+    } else {
+      lmBtn.style.display = 'none';
+      lmBtn.classList.add('hide');
+      closeLeftMenu();
+    }
+  }
+
+  // 2. Open App / Login button in header
+  const openAppBtn = byId('openAppBtn');
+  if (openAppBtn) {
+    const textSpan = openAppBtn.querySelector('[data-i18n]') || openAppBtn.querySelector('span');
+    if (isAuth) {
+      openAppBtn.classList.remove('btn--ghost');
+      openAppBtn.classList.add('btn--primary');
+      if (textSpan) textSpan.textContent = isAdmin ? 'CMS & Dashboard' : 'Dashboard';
+      openAppBtn.setAttribute('title', `Signed in as ${currentUserName()} (${role})`);
+    } else {
+      openAppBtn.classList.remove('btn--primary');
+      openAppBtn.classList.add('btn--ghost');
+      if (textSpan) textSpan.textContent = 'Admin Login';
+      openAppBtn.setAttribute('title', 'Sign in as Super Admin / Admin');
+    }
+  }
+
+  // 3. User display in Left Menu
+  $$('.left-menu__name').forEach((el) => {
+    el.textContent = isAuth ? (currentUser() ? currentUser().name : DB.auth.session.user) : (DB.profile ? DB.profile.name : 'Arjun Singh');
+  });
+  $$('.left-menu__role').forEach((el) => {
+    el.textContent = isAuth ? `${role} · CMS Access` : 'Facilities Manager · UAE';
+  });
+
+  const adminSessionGroup = byId('lmAdminSession');
+  if (adminSessionGroup) {
+    adminSessionGroup.style.display = isAdmin ? 'block' : 'none';
+  }
+}
+
+/* Left Menu Drawer Controls (Restricted to Admin and Super Admin) */
+const openLeftMenu = () => {
+  const isAuth = !!(DB && DB.auth && DB.auth.session);
+  const role = isAuth ? (DB.auth.session.role || 'Viewer') : '';
+  const isAdmin = isAuth && (role === 'Super Admin' || role === 'Admin');
+
+  if (!isAdmin) {
+    showView('login');
+    toast('warn', 'Admin Access Required', 'Please sign in with Admin or Super Admin credentials to access the CMS Left Menu.');
+    return;
+  }
+  byId('leftMenu').classList.add('is-open');
+  byId('leftMenuScrim').classList.add('is-open');
+  document.body.classList.add('no-scroll');
+};
+
+const closeLeftMenu = () => {
+  const lm = byId('leftMenu');
+  const sc = byId('leftMenuScrim');
+  if (lm) lm.classList.remove('is-open');
+  if (sc) sc.classList.remove('is-open');
+  if (!$('.overlay.is-open')) document.body.classList.remove('no-scroll');
+};
 
 /* ---------------- Global event delegation ---------------- */
 function bindGlobalEvents() {
@@ -3926,7 +4125,7 @@ function bindGlobalEvents() {
       return;
     }
     if (t0.closest('#downloadExpCsv')) return exportExpCsv();
-    if (t0.closest('#heroResume')) return downloadResume();
+    if (t0.closest('#heroResume') || t0.closest('#lmResumeBtn')) return showResumePreviewModal();
     if (t0.closest('#addProjectPublic')) return projectForm();
     if (t0.closest('#addAssetBtn')) return assetForm();
     if (t0.closest('#addWoBtn')) return woForm();
@@ -4037,6 +4236,7 @@ function bindGlobalEvents() {
     byId('loginForm').reset();
     toast('ok', 'Welcome back', `${currentUserName()} · ${currentRole()}`);
     showDash('overview');
+  updateAuthUI();
   });
   bind('dashEditProfileBtn', 'click', openProfileBrandEditor);
   bind('setAnim', 'change', (e) => {
@@ -4111,21 +4311,14 @@ function bindGlobalEvents() {
     return y;
   }
   
-  /* Left Menu Drawer Controls */
-  const openLeftMenu = () => {
-    byId('leftMenu').classList.add('is-open');
-    byId('leftMenuScrim').classList.add('is-open');
-    document.body.classList.add('no-scroll');
-  };
-  const closeLeftMenu = () => {
-    byId('leftMenu').classList.remove('is-open');
-    byId('leftMenuScrim').classList.remove('is-open');
-    if (!$('.overlay.is-open')) document.body.classList.remove('no-scroll');
-  };
+  
+
   const lmBtn = byId('leftMenuBtn');
   if (lmBtn) lmBtn.addEventListener('click', openLeftMenu);
   const lmClose = byId('leftMenuClose');
   if (lmClose) lmClose.addEventListener('click', closeLeftMenu);
+  const lmLog = byId('lmLogoutBtn');
+  if (lmLog) lmLog.addEventListener('click', () => { closeLeftMenu(); logout(); });
   const lmScrim = byId('leftMenuScrim');
   if (lmScrim) lmScrim.addEventListener('click', closeLeftMenu);
   
@@ -4652,6 +4845,7 @@ function boot() {
   applyTheme(DB.settings.theme || 'dark');
   applyI18n();
   restoreSession();
+  updateAuthUI();
   renderPublicSite();
   renderNotifications();
   renderDashCounts();
@@ -4685,5 +4879,6 @@ function boot() {
   setTimeout(refresh, 6000);
 }
 
+updateAuthUI();
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
 else boot();

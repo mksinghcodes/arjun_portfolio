@@ -14,7 +14,7 @@ const todayISO = () => new Date().toISOString().slice(0, 10);
 
 /* ---------------- Application System Config ---------------- */
 const APP = {
-  version: '1.0.0',
+  version: '1.2.0',
   key: 'fm_portfolio_db_v1',
   sessionKey: 'fm_portfolio_session',
   backupKey: 'fm_portfolio_backups',
@@ -284,8 +284,9 @@ function seedDB() {
       name: 'Arjun Singh',
       avatar: 'assets/avatar.jpg',
       title: 'Facilities Manager',
-      altTitle: 'Assistant Facilities Manager',
-      tagline: 'Facilities · Property · Asset Management — UAE',
+      headline: 'Senior Professional: Strategic Planning | Operations | Facilities Management',
+      altTitle: 'Strategic Planning • Operations • Facilities Management',
+      tagline: 'Strategic Planning • Operations • Facilities Management — UAE',
       photo: 'assets/profile.jpg',
       email: 'singh.arjun0231257@gmail.com',
       phone: '+971-50-467-2006',
@@ -295,37 +296,64 @@ function seedDB() {
       dob: '1990-08-29',
       nationality: 'Nepal',
       visa: 'UAE Residence Visa',
-      drivingLicence: 'UAE Light Motor Vehicle (17 Jan 2017)',
+      drivingLicence: 'UAE Light Motor Vehicle driving license issued by UAE government on 17th Jan 2017',
       languages: ['English', 'Hindi', 'Nepali', 'Bhojpuri', 'Maithili'],
       currentAt: 'Aldar Property, UAE',
-      summary: 'Versatile facilities and property management professional with 13+ years of experience setting up and running residential, commercial and hospitality operations — renovation, preventive maintenance, upgrades, MEP reliability and 24×7 service delivery across the UAE. Skilled in coordinating internal and external departments, controlling budgets and contracts, and driving ISO 14001:2015, ISO 9001:2015 and ISO 45001:2018 compliance.',
-      goals: 'Progress into a Head of Facilities / Senior FM leadership role owning multi-asset portfolios across the GCC — combining strategic asset planning, CAFM-driven analytics and sustainability/energy performance targets.',
+      objective: 'Multi-tasking professional targeting senior assignments in Facilities Management to deliver quality work in a reputed organization for mutual growth, preferably in Dubai.',
+      summary: 'Versatile performer with proven skills, offering 13 years of experience focused in setting-up & managing operations of facilities and general management including renovation, preventative / grounds maintenance & upgrades. Adept at handling day-to-day activities in co-ordination with internal / external departments for ensuring smooth business operations. Proven skills in directing & delivering 24x7 service operations of all sites including design of developing procedures & performance measures, supply of materials & service, coordination with building managers & business units on project issues and property inspections. Ensuring full compliance with ISO 14001:2015, ISO 9001:2015 and ISO 45001:2018 standards.',
+      goals: 'Targeting senior assignments in Facilities Management to deliver quality work in a reputed organization for mutual growth, preferably in Dubai. Progressing into a Head of Facilities / Senior FM leadership role owning multi-asset portfolios across the UAE & GCC.',
       highlights: [
-        '13 years across facilities, property and asset management with 24×7 service accountability',
-        'Proven at directing cross-functional teams and third-party vendors to agreed SLAs',
-        'ISO 14001:2015, ISO 9001:2015 and ISO 45001:2018 compliance ownership',
-        'Budget drafting, monthly/quarterly financial reporting, contracts and purchase orders',
-        'Major asset and workplace technology monitoring to maximise return on investment',
-        'Contingency planning for unexpected equipment failure and business continuity'
+        '13 years of experience focused in setting-up & managing operations of facilities and general management including renovation, preventative / grounds maintenance & upgrades',
+        'Adept at handling day-to-day activities in co-ordination with internal / external departments for ensuring smooth business operations',
+        'Proven skills in directing & delivering 24x7 service operations of all sites including design of developing procedures & performance measures, supply of materials & service, coordination with building managers & business units on project issues and property inspections',
+        'Proficient in investigating the availability and suitability of options for new premises; significant experience in planning for future development in line with strategic business objectives',
+        'Monitored & managed the major assets and technologies within the workplace to ensure maximum return on investment',
+        'Allocated & managed facility space for maximum accuracy; coordinated intra-office moves; supervised maintenance and repair of facilities and equipment',
+        'Ensured compliance with the ISO standards (ISO 14001:2015, ISO 9001:2015, ISO 45001:2018)',
+        'Focused on contingency plans regarding what needs to be done in the event that certain situations occur, such as equipment breaking down unexpectedly',
+        'People Manager: directing productive cross-functional teams using interactive and motivational leadership that spurs people to willingly give 100% effort'
       ],
-      competencies: ['General Administration', 'Operations & Maintenance', 'Corporate Strategy Planning', 'Cross-functional Coordination', 'Property & Facility Management', 'Staff Management & Coordination', 'Stakeholder Management', 'Advisory Services', 'Team Building & Leadership', 'Preventive Maintenance', 'Budget & Cost Control', 'Contract & Vendor Management', 'Civil Defence Compliance', 'Space & Move Management', 'Energy & Sustainability'],
-      softSkills: ['Motivator', 'Collaborator', 'Communicator', 'Innovator', 'Team Building', 'Problem-Solver'],
-      itSkills: ['MS Excel (advanced)', 'MS Word', 'MS PowerPoint', 'CAFM / Help Desk Systems', 'BMS Monitoring', 'MS Project (Gantt planning)'],
+      competencies: [
+        'Corporate Strategy Planning',
+        'Property & Facility Management',
+        'Operations & Maintenance',
+        'Cross-functional Coordination',
+        'General Administration',
+        'Staff Management & Coordination',
+        'Advisory Services',
+        'Team Building & Leadership',
+        'Stakeholder Management'
+      ],
+      softSkills: [
+        'Motivator',
+        'Collaborator',
+        'Communicator',
+        'Innovator',
+        'Team Building',
+        'Problem-Solver'
+      ],
+      itSkills: [
+        'MS Excel (Advanced)',
+        'MS Word',
+        'MS PowerPoint',
+        'CAFM / Help Desk Systems',
+        'BMS (Building Management Systems)',
+        'Hardware & Networking',
+        'Application Programming'
+      ],
       social: {
         linkedin: 'https://www.linkedin.com/',
-        whatsapp: 'https://wa.me/971504672006',
+        whatsapp: 'https://wa.me/971504672006?text=Hello%20Arjun,%20I%20viewed%20your%20Facilities%20Management%20portfolio',
         email: 'mailto:singh.arjun0231257@gmail.com',
         phone: 'tel:+971504672006'
-      }
+      },
+      stats: [
+        { label: 'Years in FM & Property', value: 13, suffix: '+', icon: 'clock' },
+        { label: 'SLA compliance delivered', value: 99.4, suffix: '%', icon: 'shield' },
+        { label: 'Major developers in UAE', value: 5, suffix: ' Firms', icon: 'building' },
+        { label: 'ISO Audits Passed', value: 100, suffix: '%', icon: 'check' }
+      ]
     },
-    stats: [
-      { label: 'Years in FM', value: 13, suffix: '+', icon: 'clock' },
-      { label: 'Assets under management', value: 24, suffix: '+', icon: 'building' },
-      { label: 'Portfolio value managed', value: 12, suffix: 'M AED', icon: 'coins' },
-      { label: 'SLA compliance', value: 98, suffix: '%', icon: 'shield' },
-      { label: 'Work orders delivered', value: 4800, suffix: '+', icon: 'wrench' },
-      { label: 'PPM completion rate', value: 96, suffix: '%', icon: 'check' }
-    ],
     experience: [
       {
         company: 'Aldar Property, UAE', short: 'Aldar', logo: 'AL',
@@ -333,41 +361,41 @@ function seedDB() {
         period: "Nov'24 — Present", start: '2024-11-01', end: '', current: true,
         location: 'Abu Dhabi / Dubai, UAE', type: 'Facilities Management',
         points: [
-          'Lead the planning, implementation and maintenance of building infrastructure and equipment across assigned residential and commercial assets',
-          'Inspect facilities, systems, plant rooms and common areas, reporting findings and corrective actions to the Facility Manager',
-          'Manage quality and performance aspects of service delivery, including monthly performance reporting and maintenance of the site document registry',
-          'Facilitate coordination of emergency procedures and manage relationships with key stakeholders through regular communication and formal review meetings'
+          'Leading the planning, implementation & maintenance of the infrastructure & equipment of buildings and facilities',
+          'Inspecting the facility, systems, rooms & common areas and reporting back any findings or issues to the Facility Manager',
+          'Managing quality & performance aspects of services including monthly performance reporting & maintenance of site document registry',
+          'Facilitating coordination of the emergency procedures and managing relationships with key stakeholders, through regular communication & formal review meetings'
         ],
-        projects: ['Residential towers MEP reliability programme', 'Common-area upgrade works', 'Emergency response & evacuation readiness']
+        projects: ['Residential & commercial towers MEP reliability programme', 'Common-area upgrade & lifecycle renewal works', 'Emergency response & evacuation readiness protocol']
       },
       {
         company: 'Deyaar Property, UAE', short: 'Deyaar', logo: 'DY',
-        title: 'Assistant Facilities Manager — Residential, Commercial & Hospitality',
+        title: 'Assistant Facilities Manager in Residential, Commercial & Hospitality Projects',
         period: "Aug'21 — Oct'24", start: '2021-08-01', end: '2024-10-31', current: false,
         location: 'Dubai, UAE', type: 'Property & Facilities Management',
         points: [
-          'Monitored performance of in-house and outsourced services against agreed service levels',
-          'Drafted budgets, monthly and quarterly financial reports, contracts, expenditure and purchase orders related to the facility',
-          'Hired, trained and motivated facility personnel while maintaining positive staff relations and conducting/approving performance evaluations',
-          'Handled obtaining and renewal of visas, passports, government health cards and driving licences',
-          'Maintained personnel files and documentation for all employees; prepared and issued employment and third-party letters'
+          'Monitoring performance of in-house and out-sourced services to agreed service levels (SLAs)',
+          'Drafting budgets, financial reports (monthly & quarterly), contracts, expenditures and purchase orders related to the facility',
+          'Hiring, training & motivating facility personnel while maintaining positive staff relations and conducting or approving performance evaluations for staff',
+          'Coordinating with PROs on affairs related with renewal of company’s computer card & municipality license, Immigration (obtaining & renewal of visas, passport, govt. Health card, driving license)',
+          'Maintaining personnel files & documentation of all employees; preparing and issuing letters to the employees such as Employment Letter or any letter for other companies'
         ],
-        projects: ['Service-level agreement restructuring', 'Annual operating budget preparation', 'Hospitality asset handover support']
+        projects: ['Service-level agreement restructuring & contractor tendering', 'Annual operating budget drafting & expenditure tracking', 'Hospitality & residential asset handover operations']
       },
       {
         company: 'DAMAC, UAE', short: 'DAMAC', logo: 'DM',
-        title: 'FM Engineer — Hospitality & Residential Project',
+        title: 'FM Engineer in Hospitality & Residential Project',
         period: "Oct'17 — Aug'21", start: '2017-10-01', end: '2021-08-31', current: false,
         location: 'Dubai, UAE', type: 'MEP & Facilities Engineering',
         points: [
-          'Developed, acquired consensus for and implemented best-practice building operation plans for assigned assets',
-          'Arranged alterations, maintenance and reconditioning of facilities as per operating procedures and management services agreements',
-          'Liaised with the Procurement team, competitively bid and prepared non-engineering service contracts to assure high-quality, cost-effective services',
-          'Prepared periodic inventory of premises contents and property condition, forwarding listings to the Property Manager for review',
-          'Ensured services were reviewed and refined to enhance delivery across the facility, coordinating all departments for trouble-free engineering operations',
-          'Recognised with the NEBOSH Award in Health & Safety at Work (Jan 2020) and the DAMAC Appreciation Award'
+          'Developed, acquired consensus and implemented the best practice/building operation plan for assigned assets',
+          'Arranged for alterations, maintenance or reconditioning of facilities, as per operating procedure / management services agreement',
+          'Liaised with Procurement team, competitively bid & prepared non-engineering service contracts to assure high quality and cost effective services',
+          'Prepared periodic inventory of premises contents and property condition and forwarded the listing to the Property Manager for review',
+          'Ensured that services are reviewed and refinements made to enhance the services across the facility',
+          'Coordinated with all departments for smooth & trouble free operations of engineering systems, equipment and customer interaction'
         ],
-        projects: ['Building operation plan rollout', 'Non-engineering service contract tendering', 'ISO 9001/14001/45001 compliance programme']
+        projects: ['Building operation plan rollout across hospitality assets', 'Non-engineering service contract tendering & procurement', 'NEBOSH Health & Safety in the workplace compliance programme']
       },
       {
         company: 'Bin Drai Enterprises, UAE', short: 'Bin Drai', logo: 'BD',
@@ -375,12 +403,11 @@ function seedDB() {
         period: "Mar'15 — Sep'17", start: '2015-03-01', end: '2017-09-30', current: false,
         location: 'Dubai, UAE', type: 'Facilities Coordination',
         points: [
-          'Attended all facility management and property meetings, relaying required information to the maintenance team in regular junior staff meetings',
-          'Managed necessary maintenance inspections at required intervals; scheduled and supervised all emergency and preventative building repairs',
-          'Monitored services installations, plant, fixtures, fittings and equipment',
-          'Initiated purchase requests for materials and parts required to execute repair and maintenance involving electrical works'
+          'Attended all Facility Management/Property meetings as required and passed on necessary information to the Maintenance team in regular junior staff meetings',
+          'Managed all necessary maintenance inspections at the required time, scheduled & supervised all repairs (both emergency & preventative to the building), monitored services installations, plant, fixtures, fittings and equipment',
+          'Initiated Purchase Request for materials / parts needed in the execution of repair & maintenance involving electrical works'
         ],
-        projects: ['Preventative maintenance scheduling system', 'Electrical repair & maintenance programme']
+        projects: ['Preventative maintenance scheduling system implementation', 'Electrical repair & installation monitoring programme']
       },
       {
         company: 'Morganti Group Inc., UAE', short: 'Morganti', logo: 'MG',
@@ -388,11 +415,11 @@ function seedDB() {
         period: "Feb'11 — Mar'15", start: '2011-02-01', end: '2015-03-31', current: false,
         location: 'UAE', type: 'MEP Supervision',
         points: [
-          'Monitored and ensured sufficient stock to carry out repair and maintenance works',
-          'Ensured inspections required by government authorities were properly conducted and documented',
-          'Oversaw operation and maintenance of the buildings, electrical, mechanical and plumbing services, plant, fixtures, furnishings and equipment'
+          'Monitored & ensured sufficient stock to carry out repair & maintenance and to meet the Resort’s requirements',
+          'Ensured that inspections required by Government authorities are properly conducted and documented which included operation & maintenance of the buildings, electrical, mechanical & plumbing services, plant, fixtures, furnishings and equipment',
+          'Oversaw operation and maintenance of resort facilities ensuring uninterrupted 24x7 guest services'
         ],
-        projects: ['Government inspection compliance documentation', 'MEP plant operations & maintenance']
+        projects: ['Government inspection compliance & certification records', 'MEP plant operations, stock control & preventative maintenance']
       }
     ],
     skills: [
@@ -427,6 +454,7 @@ function seedDB() {
     projects: [],
     assets: [],
     maintenance: [],
+    awards: [],
     certifications: [],
     education: [],
     testimonials: [],
@@ -579,22 +607,29 @@ function seedContent(db) {
     { id: 'WO-212', title: 'Common Area Lighting — Schedule Review', type: 'Preventive', asset: 'Common Area Lighting Controls', assetId: 'A-14', tech: 'Dynalite Vendor', priority: 'Low', date: '2026-09-28', due: '2026-09-28', status: 'Scheduled', cost: 0, notes: 'Align schedules with occupancy and daylight hours.' }
   ];
 
+    db.awards = [
+    { id: uid('aw'), title: 'NEBOSH Award in Health & Safety at Work', issuer: 'DAMAC / NEBOSH', year: '2020', date: '2020-01-03', category: 'Award', desc: 'Conferred on 03 Jan 2020 in DAMAC for exceptional occupational safety and site risk control.' },
+    { id: uid('aw'), title: 'DAMAC Appreciation Award', issuer: 'DAMAC Hotel & Resorts', year: '2021', date: '2021-04-15', category: 'Award', desc: 'Corporate recognition for outstanding engineering operations, building reliability and asset care.' },
+    { id: uid('aw'), title: 'Employee Of Month Award', issuer: 'Green Point Technical Services', year: '2016', date: '2016-08-20', category: 'Award', desc: 'Awarded for outstanding performance, excellent services & dedication in technical facility operations.' },
+    { id: uid('aw'), title: "D'crowned For The Month Appreciation Award", issuer: 'DAMAC Hotel & Resorts', year: '2019', date: '2019-11-10', category: 'Award', desc: 'Prestigious hospitality award for exceptional customer satisfaction and engineering responsiveness.' },
+    { id: uid('aw'), title: 'Employee of Month Award', issuer: 'LOAMS (Luxury Owner Association Management)', year: '2023', date: '2023-05-18', category: 'Award', desc: 'Awarded for outstanding performance, excellent services and dedication in owner association management.' }
+  ];
+
   db.certifications = [
-    { id: uid('c'), name: 'Certified Facility Manager (CFM)', issuer: 'MEFMA — Middle East Facility Management Association', year: 'Certified', date: '', credential: '', status: 'Active', skills: ['Facilities Management', 'Asset Management'] },
-    { id: uid('c'), name: 'NEBOSH International General Certificate', issuer: 'NEBOSH (undertaken at DAMAC)', year: '2021', date: '2021-01-20', credential: '', status: 'Active', skills: ['Health, Safety & Environment'] },
-    { id: uid('c'), name: 'NEBOSH Award in Health & Safety at Work', issuer: 'DAMAC', year: '2020', date: '2020-01-03', credential: '', status: 'Active', skills: ['Health, Safety & Environment'] },
-    { id: uid('c'), name: 'M-100: The Essentials of Management for Community Associations', issuer: 'CAI — Community Associations Institute', year: '2022', date: '2022-06-01', credential: '', status: 'Active', skills: ['Community Association Management'] },
-    { id: uid('c'), name: 'Level 1 Fire Warden Certificate', issuer: 'DCD — Dubai Civil Defence', year: '—', date: '', credential: '', status: 'Active', skills: ['Fire & Life Safety'] },
-    { id: uid('c'), name: 'Level 2 First Aid Training Certificate', issuer: 'DCD Training Center, Dubai', year: '—', date: '', credential: '', status: 'Active', skills: ['Health, Safety & Environment'] },
-    { id: uid('c'), name: 'Training of Trainers (TOT)', issuer: 'CTEVT — Council for Technical Education & Vocational Training', year: '2013', date: '2013-02-07', credential: '', status: 'Active', skills: ['Team Leadership & Development'] },
-    { id: uid('c'), name: 'Light Motor Vehicle Driving Licence', issuer: 'UAE Government', year: '2017', date: '2017-01-17', credential: '', status: 'Active', skills: [] },
-    { id: uid('c'), name: 'Diploma in Hardware & Networking', issuer: "Master Mind Int'l Education", year: '2011', date: '2011-07-01', credential: '', status: 'Completed', skills: ['Systems'] },
-    { id: uid('c'), name: 'Diploma in Application Programming', issuer: "Master Mind Int'l Education", year: '2011', date: '2011-01-01', credential: '', status: 'Completed', skills: ['Systems'] }
+    { id: uid('c'), name: 'M-100: The Essentials of Management Community Association', issuer: 'CAI (Community Associations Institute)', year: '2022', date: '2022-06-01', credential: 'M-100 Certified', status: 'Active', category: 'Certification', skills: ['Community Association Management', 'Facilities Management'] },
+    { id: uid('c'), name: 'NEBOSH Award in International General Certificate', issuer: 'NEBOSH (undertaken at DAMAC)', year: '2021', date: '2021-01-20', credential: 'IGC Certified', status: 'Active', category: 'Certification', skills: ['Health, Safety & Environment', 'ISO 45001'] },
+    { id: uid('c'), name: 'Certified Facility Manager (CFM)', issuer: 'MEFMA (Middle East Facility Management Association)', year: 'Certified', date: '2023-03-15', credential: 'MEFMA Certified', status: 'Active', category: 'Certification', skills: ['Facilities Management', 'Asset Management'] },
+    { id: uid('c'), name: 'Level - 1 Fire Warden Certificate', issuer: 'DCD (Dubai Civil Defence)', year: 'Certified', date: '2020-09-12', credential: 'Fire Warden DCD', status: 'Active', category: 'Certification', skills: ['Fire & Life Safety', 'Emergency Response'] },
+    { id: uid('c'), name: 'Level – 2 First Aid Training Certificate', issuer: 'DCD Training Center Dubai', year: 'Certified', date: '2020-10-05', credential: 'DCD First Aid Level 2', status: 'Active', category: 'Certification', skills: ['Health & Safety', 'First Aid'] },
+    { id: uid('c'), name: 'TOT (Training of Trainers)', issuer: 'CTEVT (Council for Technical Education & Vocational Training)', year: '2013', date: '2013-02-07', credential: 'CTEVT Certified Trainer', status: 'Active', category: 'Training', skills: ['Team Leadership', 'Technical Coaching'] },
+    { id: uid('c'), name: 'Diploma in Hardware & Networking', issuer: "Master Mind Int'l Education", year: '2011', date: '2011-07-31', credential: '18-Month Diploma', status: 'Active', category: 'Training', skills: ['Hardware', 'Networking', 'IT Infrastructure'] },
+    { id: uid('c'), name: 'Diploma in Application Programming', issuer: "Master Mind Int'l Education", year: '2011', date: '2011-01-31', credential: '12-Month Diploma', status: 'Active', category: 'Training', skills: ['Programming', 'Database Administration'] },
+    { id: uid('c'), name: 'Light Motor Vehicle Driving License', issuer: 'UAE Government', year: '2017', date: '2017-01-17', credential: 'UAE License 17-Jan-2017', status: 'Active', category: 'Licence', skills: ['Emergency Dispatch', 'Multi-Site Mobility'] }
   ];
 
   db.education = [
-    { id: uid('e'), degree: 'B.Tech — Electrical Engineering', institution: 'Manav Bharti University', location: 'Himachal Pradesh, India', year: '2018', grade: '', notes: 'Electrical engineering specialisation underpinning MEP and power systems scope.' },
-    { id: uid('e'), degree: 'Diploma — Electrical & Electronics Engineering', institution: 'Purwanachal Engineering Campus', location: 'Dharan, Nepal (attested by UAE Embassy)', year: '2007', grade: '', notes: 'Attested by the UAE Embassy — accepted for UAE professional recognition.' }
+    { id: uid('e'), degree: 'B.Tech. (Electrical Engineering)', institution: 'Manav Bharti University', location: 'Himachal Pradesh, India', year: '2018', grade: '', notes: 'Four-year Electrical Engineering degree underpinning high-voltage substations, central chiller plants, MEP operations and BMS telemetry.' },
+    { id: uid('e'), degree: 'Diploma (Electrical & Electronics Engineering)', institution: 'Purwanachal Engineering Campus', location: 'Dharan, Nepal (Attested by UAE Embassy)', year: '2007', grade: '', notes: 'Three-year engineering diploma officially attested by the UAE Embassy for formal UAE engineering and FM credential recognition.' }
   ];
 
   db.testimonials = [

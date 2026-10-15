@@ -180,6 +180,18 @@
         <span>singh.arjun0231257@gmail.com</span>
       </a>
     </div>
+
+    <!-- Admin Session & Logout -->
+    <div class="left-menu__group" id="lmAdminSession">
+      <div class="left-menu__group-title">Admin Session</div>
+      <div class="row row--between" style="padding:10px 12px;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;margin-bottom:8px">
+        <span style="font-size:.82rem;color:var(--text-2)">
+          <b class="left-menu__name" style="display:block">Arjun Singh</b>
+          <span class="badge badge--ok" style="font-size:.7rem;margin-top:2px">CMS Admin Access</span>
+        </span>
+        <button class="btn btn--xs btn--danger" id="lmLogoutBtn" type="button">Sign Out</button>
+      </div>
+    </div>
   </div>
 </aside>
 
@@ -198,10 +210,10 @@
 <!-- ================= NAVBAR ================= -->
 <header class="nav" id="nav">
   <div class="shell nav__inner">
-    <!-- Left Menu Button -->
-    <button class="left-menu-btn" id="leftMenuBtn" type="button" aria-label="Open Navigation Menu">
+    <!-- Left Menu Button (Visible ONLY when logged in as admin or superadmin) -->
+    <button class="left-menu-btn hide" id="leftMenuBtn" type="button" aria-label="Open CMS Menu" style="display:none">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      <span>Menu</span>
+      <span>CMS Menu</span>
     </button>
 
     <!-- Brand -->

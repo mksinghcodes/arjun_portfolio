@@ -1232,3 +1232,7 @@ html[data-animations="off"] .particles {
 html[data-animations="off"] .marquee {
   overflow-x: auto;
 }
+
+
+/* Left menu visibility controls */
+.left-menu-btn.hide { display: none !important; }
