@@ -151,9 +151,9 @@ strong{color:var(--text);font-weight:700}
 
 /* ---------- 3. LAYOUT ---------- */
 .shell{width:100%;max-width:var(--shell-max);margin-inline:auto;padding-inline:clamp(16px,3.4vw,44px)}
-.section{padding-block:clamp(22px,2.6vw,36px);position:relative}
-.section--tight{padding-block:clamp(16px,2vw,26px)}
-.section-head{max-width:840px;margin-bottom:clamp(14px,1.5vw,20px)}
+.section{padding-block:clamp(16px,2vw,28px);position:relative}
+.section--tight{padding-block:clamp(12px,1.5vw,20px)}
+.section-head{max-width:840px;margin-bottom:clamp(10px,1.2vw,16px)}
 .section-head--center{margin-inline:auto;text-align:center}
 .eyebrow{
   display:inline-flex;align-items:center;gap:9px;
@@ -320,13 +320,15 @@ html[data-theme="light"] .ripple{background:rgba(30,58,138,.22)}
 .nav{
   /* height comes from --nav-box-h / --nav-h on :root */
   position:fixed;top:0;left:0;right:0;z-index:900;
-  padding:9px clamp(6px,1.6vw,24px);
+  padding:8px 0;
   pointer-events:none;
 }
-/* the floating glass box, with an animated gradient hairline border */
+/* the floating glass box, perfectly aligned with the content shell bounds */
 .nav__inner{
   pointer-events:auto;position:relative;
-  width:100%;max-width:var(--shell-max);margin-inline:auto;box-sizing:border-box;
+  width:calc(100% - 2 * clamp(16px,3.4vw,44px));
+  max-width:calc(var(--shell-max) - 2 * clamp(16px,3.4vw,44px));
+  margin-inline:auto;box-sizing:border-box;
   display:flex;align-items:center;gap:clamp(10px,1.4vw,22px);
   height:var(--nav-box-h);padding:0 clamp(11px,1.3vw,20px);
   border-radius:var(--r-full);

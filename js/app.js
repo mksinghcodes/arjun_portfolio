@@ -189,13 +189,25 @@ function loadDB() {
 
 /* Merge stored data over a fresh seed so new fields appear after upgrades. */
 function migrate(stored, fresh) {
+  const isUpgraded = !stored.meta || !stored.meta.version || String(stored.meta.version) < String(fresh.meta.version);
   const out = Object.assign({}, fresh, stored);
   out.meta = Object.assign({}, fresh.meta, stored.meta || {});
   out.settings = Object.assign({}, fresh.settings, stored.settings || {});
-  out.profile = Object.assign({}, fresh.profile, stored.profile || {});
-  out.profile.social = Object.assign({}, fresh.profile.social, (stored.profile && stored.profile.social) || {});
-  ['users', 'experience', 'skills', 'skillCategories', 'projects', 'assets', 'maintenance', 'certifications', 'education', 'testimonials', 'blog', 'messages', 'activity', 'notifications', 'stats'].forEach((k) => {
-    if (!Array.isArray(out[k])) out[k] = fresh[k];
+
+  if (isUpgraded) {
+    // Official CV data refresh from uploaded PDF
+    out.profile = Object.assign({}, fresh.profile);
+    out.experience = JSON.parse(JSON.stringify(fresh.experience));
+    out.awards = JSON.parse(JSON.stringify(fresh.awards));
+    out.certifications = JSON.parse(JSON.stringify(fresh.certifications));
+    out.education = JSON.parse(JSON.stringify(fresh.education));
+  } else {
+    out.profile = Object.assign({}, fresh.profile, stored.profile || {});
+    out.profile.social = Object.assign({}, fresh.profile.social, (stored.profile && stored.profile.social) || {});
+  }
+
+  ['users', 'experience', 'skills', 'skillCategories', 'projects', 'assets', 'maintenance', 'awards', 'certifications', 'education', 'testimonials', 'blog', 'messages', 'activity', 'notifications', 'stats'].forEach((k) => {
+    if (!Array.isArray(out[k]) || out[k].length === 0) out[k] = fresh[k];
   });
   out.meta.version = APP.version;
   populateDerived(out);
@@ -631,6 +643,24 @@ function renderAbout() {
       </span>`).join('');
   }
 
+  const softEl = byId('aboutSoftSkills');
+  if (softEl) {
+    const softList = (p.softSkills && p.softSkills.length) ? p.softSkills : ['Motivator', 'Collaborator', 'Communicator', 'Innovator', 'Team Building', 'Problem-Solver'];
+    softEl.innerHTML = softList.map((s) => `
+      <span class="badge badge--cyan" style="font-size:.76rem;padding:4px 9px">
+        <span style="color:var(--accent);margin-right:4px">★</span>${esc(s)}
+      </span>`).join('');
+  }
+
+  const itEl = byId('aboutItSkills');
+  if (itEl) {
+    const itList = (p.itSkills && p.itSkills.length) ? p.itSkills : ['MS Excel (Advanced)', 'MS Word', 'MS PowerPoint', 'Hardware & Networking', 'Application Programming', 'CAFM / BMS'];
+    itEl.innerHTML = itList.map((it) => `
+      <span class="badge badge--muted" style="font-size:.76rem;padding:4px 9px">
+        <span style="color:var(--text-3);margin-right:4px">💻</span>${esc(it)}
+      </span>`).join('');
+  }
+
   const aw = byId('aboutAwards');
   if (aw) {
     const awardsList = (DB.awards && DB.awards.length) ? DB.awards : [
@@ -658,9 +688,11 @@ function renderAbout() {
     const f = [
       { l: 'Experience', v: '13+ Years FM & Property' },
       { l: 'Location', v: p.address || 'Business Bay, Dubai, UAE' },
+      { l: 'Date of Birth', v: '29th August 1990' },
       { l: 'Driving Licence', v: 'UAE LMV (17 Jan 2017)' },
       { l: 'Current Role', v: p.currentAt || 'Aldar Property, UAE' },
       { l: 'Languages', v: (p.languages || []).join(', ') },
+      { l: 'Education', v: 'B.Tech EE & Diploma EEE (Attested)' },
       { l: 'ISO Audits', v: 'ISO 14001, 9001, 45001' }
     ];
     facts.innerHTML = f.map((x) => `
@@ -2173,7 +2205,17 @@ function downloadResume() {
     });
 
     if (y > 230) { doc.addPage(); y = 20; }
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(15, 23, 42); doc.text('Certifications', 14, y); y += 6;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(15, 23, 42); doc.text('Awards & Accolades', 14, y); y += 6;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.8); doc.setTextColor(45, 58, 80);
+    (DB.awards || []).forEach((a) => {
+      if (y > 274) { doc.addPage(); y = 20; }
+      const l = doc.splitTextToSize('•  ' + a.title + ' — ' + (a.issuer || '') + (a.date ? ' (' + a.date + ')' : ''), 178);
+      doc.text(l, 16, y); y += l.length * 4.1;
+    });
+    y += 4;
+
+    if (y > 230) { doc.addPage(); y = 20; }
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(15, 23, 42); doc.text('Trainings & Certifications', 14, y); y += 6;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(8.8); doc.setTextColor(45, 58, 80);
     DB.certifications.forEach((c) => {
       if (y > 274) { doc.addPage(); y = 20; }
@@ -2181,12 +2223,24 @@ function downloadResume() {
       doc.text(l, 16, y); y += l.length * 4.1;
     });
     y += 4;
+
     doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(15, 23, 42); doc.text('Education', 14, y); y += 6;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(8.8); doc.setTextColor(45, 58, 80);
     DB.education.forEach((e) => {
       const l = doc.splitTextToSize(`•  ${e.degree} — ${e.institution}, ${e.location} (${e.year})`, 178);
       doc.text(l, 16, y); y += l.length * 4.1;
     });
+    y += 4;
+
+    if (p.softSkills && p.softSkills.length) {
+      if (y > 260) { doc.addPage(); y = 20; }
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(15, 23, 42); doc.text('Soft Skills & IT Skills', 14, y); y += 5;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(8.6); doc.setTextColor(45, 58, 80);
+      const sLine = doc.splitTextToSize('Soft Skills: ' + p.softSkills.join(', '), 178);
+      doc.text(sLine, 14, y); y += sLine.length * 4.1;
+      const itLine = doc.splitTextToSize('IT Skills: ' + (p.itSkills || []).join(', '), 178);
+      doc.text(itLine, 14, y); y += itLine.length * 4.1;
+    }
     pdfFooter(doc);
     doc.save('Arjun-Singh-Facilities-Manager-CV.pdf');
     logActivity('Downloaded CV as PDF'); toast('ok', 'Resume downloaded', 'PDF generated from live profile data.');
@@ -3686,7 +3740,7 @@ function panelSettings(host) {
           </div>
           <div class="field"><label>Animations</label>
             <label class="row" style="gap:9px;cursor:pointer;padding-top:6px">
-              <span class="switch"><input type="checkbox" id="setAnim" ${DB.settings.animations !== false ? 'checked' : ''}><span class="switch__track"></span></span>
+              <span class="switch"><input type="checkbox" id="setAnim" ${DB.settings && DB.settings.animations === true ? 'checked' : ''}><span class="switch__track"></span></span>
               <span style="font-size:.84rem;color:var(--text-2)">Enable motion effects</span>
             </label>
           </div>
