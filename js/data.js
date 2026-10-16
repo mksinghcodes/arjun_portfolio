@@ -14,10 +14,10 @@ const todayISO = () => new Date().toISOString().slice(0, 10);
 
 /* ---------------- Application System Config ---------------- */
 const APP = {
-  version: '1.3.0',
-  key: 'fm_portfolio_db_v1',
-  sessionKey: 'fm_portfolio_session',
-  backupKey: 'fm_portfolio_backups',
+  version: '1.4.0',
+  key: 'fm_portfolio_db_v2',
+  sessionKey: 'fm_portfolio_session_v2',
+  backupKey: 'fm_portfolio_backups_v2',
   build: '2026.10'
 };
 
@@ -470,105 +470,105 @@ function seedDB() {
 function seedContent(db) {
   db.projects = [
     {
-      id: 'P-1001', name: 'Chiller Plant Retrofit — Tower A', client: 'Owners Association, Tower A',
+      id: 'P-1001', name: 'Chiller Plant Retrofit & Optimization', client: 'Aldar Property Portfolio, UAE',
       category: 'MEP', status: 'Completed', budget: 1850000, spent: 1796000,
-      start: '2024-02-01', end: '2024-06-15', progress: 100, priority: 'High',
-      team: ['MEP Team', '3rd-party chiller contractor', 'BMS vendor'],
+      start: '2024-11-15', end: '2025-04-20', progress: 100, priority: 'High',
+      team: ['Aldar FM Team', '3rd-party chiller contractor', 'BMS vendor'],
       tags: ['Chiller', 'Energy', 'Retrofit'],
-      desc: 'Full retrofit of the central chiller plant including compressor overhaul, condenser descaling, controls upgrade and insulation renewal — restoring design capacity and cutting specific power consumption.',
+      desc: 'Full retrofit and reliability overhaul of central chiller plant including compressor overhaul, condenser descaling, controls upgrade and insulation renewal across residential/commercial towers.',
       outcomes: ['Specific power reduced from 0.92 to 0.71 kW/TR', 'Unplanned chiller downtime eliminated for 14 months', 'Payback modelled at 3.4 years'],
       gallery: [], milestones: [
-        { name: 'Condition survey & scope', date: '2024-02-10', done: true },
-        { name: 'Contractor mobilisation', date: '2024-03-01', done: true },
-        { name: 'Compressor overhaul', date: '2024-04-20', done: true },
-        { name: 'Controls & commissioning', date: '2024-06-15', done: true }
+        { name: 'Condition survey & scope', date: '2024-11-20', done: true },
+        { name: 'Contractor mobilisation', date: '2024-12-05', done: true },
+        { name: 'Compressor overhaul', date: '2025-02-15', done: true },
+        { name: 'Controls & commissioning', date: '2025-04-20', done: true }
       ], attachments: []
     },
     {
-      id: 'P-1002', name: 'Lobby & Amenity Refurbishment', client: 'Developer',
-      category: 'Refurbishment', status: 'Ongoing', budget: 3200000, spent: 1740000,
-      start: '2025-09-01', end: '2026-03-01', progress: 55, priority: 'High',
-      team: ['Interior contractor', 'FM Team', 'ID Consultant'],
+      id: 'P-1002', name: 'Lobby & Amenity Refurbishment', client: 'Deyaar Property Management, UAE',
+      category: 'Refurbishment', status: 'Completed', budget: 3200000, spent: 3040000,
+      start: '2023-09-01', end: '2024-03-01', progress: 100, priority: 'High',
+      team: ['Interior contractor', 'Deyaar FM Team', 'ID Consultant'],
       tags: ['Fit-out', 'Amenity', 'Finishes'],
-      desc: 'Refresh of lobby, gym and pool-deck finishes across two towers — stone and joinery replacement, lighting redesign, pool-deck slip-resistant surfacing and FF&E renewal.',
-      outcomes: ['Phased access maintained for residents throughout'],
+      desc: 'Comprehensive refresh of lobby, gym and pool-deck finishes across multi-building residential & commercial assets — stone and joinery replacement, lighting redesign, pool-deck slip-resistant surfacing and FF&E renewal.',
+      outcomes: ['Phased access maintained for residents throughout with zero complaints', 'Enhanced asset valuation and tenant satisfaction scores'],
       gallery: [], milestones: [
-        { name: 'Design freeze', date: '2025-09-15', done: true },
-        { name: 'Tower 1 lobby complete', date: '2025-12-20', done: true },
-        { name: 'Gym & pool deck', date: '2026-02-01', done: false },
-        { name: 'Snag & handover', date: '2026-03-01', done: false }
+        { name: 'Design freeze & tender', date: '2023-09-15', done: true },
+        { name: 'Tower 1 lobby complete', date: '2023-12-20', done: true },
+        { name: 'Gym & pool deck renewal', date: '2024-02-01', done: true },
+        { name: 'Snag closure & handover', date: '2024-03-01', done: true }
       ], attachments: []
     },
     {
-      id: 'P-1003', name: 'Fire Alarm System Upgrade (DCD)', client: 'Civil Defence Compliance',
-      category: 'Safety', status: 'Ongoing', budget: 1450000, spent: 580000,
-      start: '2025-11-01', end: '2026-04-30', progress: 40, priority: 'Critical',
-      team: ['Fire safety contractor', 'DCD-approved consultant', 'FM Team'],
+      id: 'P-1003', name: 'Fire Alarm & Life Safety System Upgrade (DCD)', client: 'DAMAC Hotel & Resorts / LOAMS',
+      category: 'Safety', status: 'Completed', budget: 1450000, spent: 1380000,
+      start: '2020-02-01', end: '2020-10-30', progress: 100, priority: 'Critical',
+      team: ['NAFFCO Fire contractor', 'DCD-approved consultant', 'DAMAC FM Engineering'],
       tags: ['Fire Alarm', 'DCD', 'Compliance'],
-      desc: 'Upgrade of addressable fire alarm panels, detection loops and cause-and-effect matrix to meet the latest Civil Defence code, including voice evacuation interfacing.',
-      outcomes: ['Zero DCD observations at last interim inspection'],
+      desc: 'Upgrade of addressable fire alarm panels, detection loops and cause-and-effect matrix to meet the latest Civil Defence code, including voice evacuation interfacing and NEBOSH safety compliance.',
+      outcomes: ['Zero DCD observations at final Civil Defence audit', 'Contributed to NEBOSH and DAMAC Appreciation recognition'],
       gallery: [], milestones: [
-        { name: 'DCD drawing approval', date: '2025-11-20', done: true },
-        { name: 'Panel replacement', date: '2026-01-15', done: true },
-        { name: 'Loop & device testing', date: '2026-03-10', done: false },
-        { name: 'Final DCD inspection', date: '2026-04-30', done: false }
+        { name: 'DCD drawing approval', date: '2020-02-20', done: true },
+        { name: 'Panel replacement & wiring', date: '2020-05-15', done: true },
+        { name: 'Loop & device commissioning', date: '2020-08-10', done: true },
+        { name: 'Final DCD inspection sign-off', date: '2020-10-30', done: true }
       ], attachments: []
     },
     {
-      id: 'P-1004', name: 'Landscape Irrigation Automation', client: 'Community Association',
-      category: 'Landscaping', status: 'Planned', budget: 620000, spent: 0,
-      start: '2026-09-01', end: '2026-12-01', progress: 0, priority: 'Medium',
-      team: ['Landscaping vendor', 'Irrigation specialist'],
+      id: 'P-1004', name: 'Landscape Irrigation Automation & Water Saving', client: 'DAMAC / Luxury Community Associations',
+      category: 'Landscaping', status: 'Completed', budget: 620000, spent: 590000,
+      start: '2019-04-01', end: '2019-09-01', progress: 100, priority: 'Medium',
+      team: ['Landscaping vendor', 'Irrigation specialist', 'DAMAC FM'],
       tags: ['Irrigation', 'Water Saving', 'Sustainability'],
-      desc: 'Automated drip irrigation with soil-moisture and weather-based controllers across podium gardens to reduce water consumption and manual labour.',
-      outcomes: ['Target 32% reduction in irrigation water'],
+      desc: 'Automated drip irrigation with soil-moisture and weather-based controllers across community podium gardens to reduce municipal water consumption and manual labour.',
+      outcomes: ['Delivered 32% reduction in irrigation water expenditure', 'Automated fault alerts to central facilities desk'],
       gallery: [], milestones: [
-        { name: 'Scope & BOQ', date: '2026-09-10', done: false },
-        { name: 'Installation', date: '2026-10-20', done: false },
-        { name: 'Commissioning', date: '2026-12-01', done: false }
+        { name: 'Scope & BOQ', date: '2019-04-10', done: true },
+        { name: 'Installation & piping', date: '2019-06-20', done: true },
+        { name: 'Commissioning & testing', date: '2019-09-01', done: true }
       ], attachments: []
     },
     {
-      id: 'P-1005', name: 'Podium Waterproofing Remediation', client: 'Owners Association, Tower B',
-      category: 'MEP', status: 'On Hold', budget: 980000, spent: 196000,
-      start: '2025-05-01', end: '2025-10-01', progress: 20, priority: 'High',
-      team: ['Waterproofing specialist', 'FM Team'],
+      id: 'P-1005', name: 'Podium Waterproofing & Structural Remediation', client: 'Bin Drai Enterprises, UAE',
+      category: 'MEP', status: 'Completed', budget: 980000, spent: 940000,
+      start: '2016-01-10', end: '2016-06-25', progress: 100, priority: 'High',
+      team: ['Waterproofing specialist', 'Bin Drai FM Coordination team'],
       tags: ['Waterproofing', 'Leakage', 'Structure'],
-      desc: 'Remedial waterproofing to podium slab and planters following recurring leakage into retail units. Works paused pending owner-association budget approval.',
-      outcomes: ['Interim leak diversion in place; no further tenant claims since June'],
+      desc: 'Remedial waterproofing to podium slab, expansion joints and planters following recurring leakage into retail units and parking basements.',
+      outcomes: ['Zero water ingress across retail and basement zones following remediation', 'Extended structural waterproofing warranty by 10 years'],
       gallery: [], milestones: [
-        { name: 'Leak investigation', date: '2025-05-20', done: true },
-        { name: 'Trial patch & testing', date: '2025-07-10', done: true },
-        { name: 'Full remediation', date: '2026-06-01', done: false }
+        { name: 'Leak investigation & core test', date: '2016-01-20', done: true },
+        { name: 'Trial patch & membrane testing', date: '2016-03-10', done: true },
+        { name: 'Full remediation & flood test', date: '2016-06-25', done: true }
       ], attachments: []
     },
     {
-      id: 'P-1006', name: 'BMS Integration — Phase 2', client: 'Developer',
+      id: 'P-1006', name: 'BMS Central Integration & Energy Telemetry', client: 'Morganti Group Inc. / Hospitality Assets',
       category: 'MEP', status: 'Completed', budget: 2100000, spent: 2015000,
-      start: '2023-08-01', end: '2024-01-20', progress: 100, priority: 'High',
-      team: ['BMS vendor', 'MEP Team'],
+      start: '2013-05-01', end: '2014-02-15', progress: 100, priority: 'High',
+      team: ['Honeywell BMS vendor', 'Morganti MEP Team'],
       tags: ['BMS', 'Controls', 'Energy'],
-      desc: 'Integration of chillers, pumps, AHUs and common-area lighting into a single BMS platform with trend logging, alarms and scheduled optimisation strategies.',
-      outcomes: ['Alarm flood reduced 64% via rationalisation', 'Night setback strategy adopted portfolio-wide'],
+      desc: 'Integration of chillers, booster pumps, AHUs and common-area lighting into a single BMS platform with trend logging, alarms and scheduled optimisation strategies for 24x7 guest operations.',
+      outcomes: ['Alarm flood reduced 64% via rationalisation', 'Uninterrupted 24x7 guest service reliability maintained'],
       gallery: [], milestones: [
-        { name: 'Point schedule approval', date: '2023-08-20', done: true },
-        { name: 'Field device wiring', date: '2023-10-30', done: true },
-        { name: 'Graphics & trends', date: '2023-12-15', done: true },
-        { name: 'Handover & training', date: '2024-01-20', done: true }
+        { name: 'Point schedule approval', date: '2013-05-20', done: true },
+        { name: 'Field device wiring & DDC', date: '2013-08-30', done: true },
+        { name: 'Graphics & trends setup', date: '2013-11-15', done: true },
+        { name: 'Handover & authority sign-off', date: '2014-02-15', done: true }
       ], attachments: []
     },
     {
-      id: 'P-1007', name: 'Annual PPM Contract Re-tender', client: 'Asset Owner',
-      category: 'Contracts', status: 'Completed', budget: 240000, spent: 218000,
-      start: '2024-09-01', end: '2024-11-30', progress: 100, priority: 'Medium',
-      team: ['Procurement', 'FM Team'],
+      id: 'P-1007', name: 'Annual Hard & Soft Services Contract Re-tender', client: 'Deyaar Property Management, UAE',
+      category: 'Contracts', status: 'Completed', budget: 340000, spent: 318000,
+      start: '2022-03-01', end: '2022-06-30', progress: 100, priority: 'Medium',
+      team: ['Procurement', 'Deyaar FM Operations Team'],
       tags: ['Tender', 'SLA', 'Cost Saving'],
-      desc: 'Competitive re-tender of the integrated hard-services PPM contract with re-scoped KPIs, statutory testing matrix and penalty/incentive framework.',
-      outcomes: ['11.4% cost reduction at improved KPI thresholds'],
+      desc: 'Competitive re-tender of the integrated hard and soft services contracts across residential portfolios with re-scoped KPIs, statutory testing matrix and SLA penalty/incentive frameworks.',
+      outcomes: ['12.8% operational cost reduction while elevating KPI compliance to 99.4%', 'Streamlined vendor escalation and quarterly review protocols'],
       gallery: [], milestones: [
-        { name: 'Scope & KPI drafting', date: '2024-09-20', done: true },
-        { name: 'Bid evaluation', date: '2024-10-25', done: true },
-        { name: 'Award & mobilisation', date: '2024-11-30', done: true }
+        { name: 'Scope & KPI drafting', date: '2022-03-15', done: true },
+        { name: 'Bid evaluation & commercial review', date: '2022-05-10', done: true },
+        { name: 'Award & contractor mobilisation', date: '2022-06-30', done: true }
       ], attachments: []
     }
   ];

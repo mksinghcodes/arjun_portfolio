@@ -539,12 +539,14 @@ function initTyping() {
   const node = byId('typeRole');
   if (!node) return;
   const roles = [
-    'Facilities Manager — Residential & Commercial',
-    'Assistant Facilities Manager',
-    'Property & Asset Management Specialist',
-    'MEP Operations & Building Maintenance Lead',
-    'ISO 9001 · 14001 · 45001 Compliance Owner',
-    '13+ Years in the UAE'
+    'Senior Professional: Strategic Planning | Operations | FM',
+    'Facilities Manager — Aldar Property, UAE',
+    'Assistant Facilities Manager — Deyaar Property, UAE',
+    'FM Engineer — DAMAC, UAE',
+    'FM Coordinator — Bin Drai Enterprises, UAE',
+    'FM Supervisor — Morganti Group Inc., UAE',
+    'MEFMA Certified Facility Manager & NEBOSH IGC',
+    'B.Tech. (Electrical Engineering) — 13 Years UAE Exp.'
   ];
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { node.textContent = roles[0]; return; }
   let r = 0, c = 0, deleting = false;
