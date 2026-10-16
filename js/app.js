@@ -167,6 +167,11 @@ function saveDB(reason = 'save') {
 }
 
 function loadDB() {
+  // Proactively clear legacy stored keys so no outdated cached state lingers
+  try {
+    ['fm_portfolio_db', 'fm_portfolio_db_v1', 'fm_portfolio_db_v2'].forEach((k) => localStorage.removeItem(k));
+  } catch (_) {}
+
   let raw = null;
   try { raw = localStorage.getItem(APP.key); } catch (_) { raw = null; }
   if (raw) {
@@ -187,26 +192,39 @@ function loadDB() {
   return DB;
 }
 
-/* Merge stored data over a fresh seed so new fields appear after upgrades. */
+/* Merge stored data over a fresh seed while guaranteeing official CV data from PDF */
 function migrate(stored, fresh) {
-  const isUpgraded = !stored.meta || !stored.meta.version || String(stored.meta.version) < String(fresh.meta.version);
   const out = Object.assign({}, fresh, stored);
   out.meta = Object.assign({}, fresh.meta, stored.meta || {});
   out.settings = Object.assign({}, fresh.settings, stored.settings || {});
 
-  if (isUpgraded) {
-    // Official CV data refresh from uploaded PDF
-    out.profile = Object.assign({}, fresh.profile);
-    out.experience = JSON.parse(JSON.stringify(fresh.experience));
-    out.awards = JSON.parse(JSON.stringify(fresh.awards));
-    out.certifications = JSON.parse(JSON.stringify(fresh.certifications));
-    out.education = JSON.parse(JSON.stringify(fresh.education));
-  } else {
-    out.profile = Object.assign({}, fresh.profile, stored.profile || {});
-    out.profile.social = Object.assign({}, fresh.profile.social, (stored.profile && stored.profile.social) || {});
-  }
+  // Always enforce official PDF CV profile & content integrity
+  out.profile = Object.assign({}, fresh.profile, stored.profile || {});
+  out.profile.name = fresh.profile.name;
+  out.profile.title = fresh.profile.title;
+  out.profile.headline = fresh.profile.headline;
+  out.profile.summary = fresh.profile.summary;
+  out.profile.objective = fresh.profile.objective;
+  out.profile.highlights = fresh.profile.highlights;
+  out.profile.competencies = fresh.profile.competencies;
+  out.profile.softSkills = fresh.profile.softSkills;
+  out.profile.itSkills = fresh.profile.itSkills;
+  out.profile.email = fresh.profile.email;
+  out.profile.phone = fresh.profile.phone;
+  out.profile.address = fresh.profile.address;
+  out.profile.dob = fresh.profile.dob;
+  out.profile.languages = fresh.profile.languages;
+  out.profile.drivingLicence = fresh.profile.drivingLicence;
+  out.profile.stats = fresh.profile.stats;
 
-  ['users', 'experience', 'skills', 'skillCategories', 'projects', 'assets', 'maintenance', 'awards', 'certifications', 'education', 'testimonials', 'blog', 'messages', 'activity', 'notifications', 'stats'].forEach((k) => {
+  out.experience = JSON.parse(JSON.stringify(fresh.experience));
+  out.awards = JSON.parse(JSON.stringify(fresh.awards));
+  out.certifications = JSON.parse(JSON.stringify(fresh.certifications));
+  out.education = JSON.parse(JSON.stringify(fresh.education));
+  out.skills = JSON.parse(JSON.stringify(fresh.skills));
+  out.projects = JSON.parse(JSON.stringify(fresh.projects));
+
+  ['users', 'skillCategories', 'assets', 'maintenance', 'testimonials', 'blog', 'messages', 'activity', 'notifications'].forEach((k) => {
     if (!Array.isArray(out[k]) || out[k].length === 0) out[k] = fresh[k];
   });
   out.meta.version = APP.version;
@@ -3996,28 +4014,37 @@ function renderPublicSite() {
 
 /* ==========================================================================
    Role-Based UI Control & Left Menu Access Guard
-   Rule: Left side menu will display ONLY when logged in with admin or superadmin
+   Rule: Left side menu CMS tools display ONLY when logged in with admin or superadmin
    ========================================================================== */
 function updateAuthUI() {
   const isAuth = !!(DB && DB.auth && DB.auth.session);
   const role = isAuth ? (DB.auth.session.role || 'Viewer') : '';
   const isAdmin = isAuth && (role === 'Super Admin' || role === 'Admin');
 
-  // 1. Left Menu Toggle Button in Header (Visible ONLY when logged in as admin or superadmin)
+  // 1. Left Menu Toggle Button in Header (Always visible and accessible)
   const lmBtn = byId('leftMenuBtn');
+  const lmBtnText = byId('leftMenuBtnText');
   if (lmBtn) {
-    if (isAdmin) {
-      lmBtn.style.display = 'inline-flex';
-      lmBtn.classList.remove('hide');
-      lmBtn.setAttribute('title', `CMS Left Menu (${role})`);
-    } else {
-      lmBtn.style.display = 'none';
-      lmBtn.classList.add('hide');
-      closeLeftMenu();
-    }
+    lmBtn.style.display = 'inline-flex';
+    lmBtn.classList.remove('hide');
+    if (lmBtnText) lmBtnText.textContent = isAdmin ? 'CMS Menu' : 'Menu';
+    lmBtn.setAttribute('title', isAdmin ? `CMS Left Menu (${role})` : 'Navigation Menu');
   }
 
-  // 2. Open App / Login button in header
+  // 2. Left Menu: CMS & Operations group visible ONLY when admin or superadmin
+  const cmsGroup = byId('lmCmsGroup');
+  if (cmsGroup) cmsGroup.style.display = isAdmin ? 'flex' : 'none';
+
+  // Guest group: shown when not logged in as admin
+  const guestGroup = byId('lmGuestGroup');
+  if (guestGroup) guestGroup.style.display = isAdmin ? 'none' : 'flex';
+
+  const adminSessionGroup = byId('lmAdminSession');
+  if (adminSessionGroup) {
+    adminSessionGroup.style.display = isAdmin ? 'block' : 'none';
+  }
+
+  // 3. Open App / Login button in header
   const openAppBtn = byId('openAppBtn');
   if (openAppBtn) {
     const textSpan = openAppBtn.querySelector('[data-i18n]') || openAppBtn.querySelector('span');
@@ -4034,33 +4061,21 @@ function updateAuthUI() {
     }
   }
 
-  // 3. User display in Left Menu
+  // 4. User display in Left Menu
   $$('.left-menu__name').forEach((el) => {
     el.textContent = isAuth ? (currentUser() ? currentUser().name : DB.auth.session.user) : (DB.profile ? DB.profile.name : 'Arjun Singh');
   });
   $$('.left-menu__role').forEach((el) => {
     el.textContent = isAuth ? `${role} · CMS Access` : 'Facilities Manager · UAE';
   });
-
-  const adminSessionGroup = byId('lmAdminSession');
-  if (adminSessionGroup) {
-    adminSessionGroup.style.display = isAdmin ? 'block' : 'none';
-  }
 }
 
-/* Left Menu Drawer Controls (Restricted to Admin and Super Admin) */
+/* Left Menu Drawer Controls (Open menu drawer smoothly) */
 const openLeftMenu = () => {
-  const isAuth = !!(DB && DB.auth && DB.auth.session);
-  const role = isAuth ? (DB.auth.session.role || 'Viewer') : '';
-  const isAdmin = isAuth && (role === 'Super Admin' || role === 'Admin');
-
-  if (!isAdmin) {
-    showView('login');
-    toast('warn', 'Admin Access Required', 'Please sign in with Admin or Super Admin credentials to access the CMS Left Menu.');
-    return;
-  }
-  byId('leftMenu').classList.add('is-open');
-  byId('leftMenuScrim').classList.add('is-open');
+  const lm = byId('leftMenu');
+  const sc = byId('leftMenuScrim');
+  if (lm) lm.classList.add('is-open');
+  if (sc) sc.classList.add('is-open');
   document.body.classList.add('no-scroll');
 };
 
@@ -4082,8 +4097,27 @@ function bindGlobalEvents() {
     const themeBtn = t0.closest('#themeBtn'); if (themeBtn) return toggleTheme();
     const langBtn = t0.closest('#langBtn'); if (langBtn) return setLang(DB.settings.lang === 'en' ? 'ne' : 'en');
     const navT = t0.closest('#navToggle');
-    if (navT) { const open = byId('navLinks').classList.toggle('is-open'); navT.setAttribute('aria-expanded', String(open)); return; }
-    if (t0.closest('.nav__link')) { byId('navLinks').classList.remove('is-open'); }
+    if (navT) { openLeftMenu(); return; }
+    const lmBtnClick = t0.closest('#leftMenuBtn');
+    if (lmBtnClick) { openLeftMenu(); return; }
+
+    const navLink = t0.closest('.nav__link') || t0.closest('.left-menu__link');
+    if (navLink) {
+      closeLeftMenu();
+      const nl = byId('navLinks');
+      if (nl) nl.classList.remove('is-open');
+      if (UI.view !== 'public') showView('public');
+      const href = navLink.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.pageYOffset - navOffset(12);
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+      return;
+    }
     const notifBtn = t0.closest('#notifBtn');
     if (notifBtn) { renderNotifications(); openDrawer('Notifications'); return; }
     const notifEl = hit('data-notif');
@@ -4412,6 +4446,11 @@ function bindGlobalEvents() {
     if (DB.auth.session) showDash(UI.dashPanel || 'overview');
     else showView('login');
   });
+  const lmLogin = byId('lmLoginBtn');
+  if (lmLogin) lmLogin.addEventListener('click', () => {
+    closeLeftMenu();
+    showView('login');
+  });
 
   window.addEventListener('scroll', () => {
     const y = syncNavState();
@@ -4703,23 +4742,13 @@ function initPWA() {
   const link = byId('pwa-manifest');
   if (link) link.href = URL.createObjectURL(new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' }));
 
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    const sw = `
-      const CACHE = 'fm-portfolio-${APP.version}';
-      self.addEventListener('install', (e) => { self.skipWaiting(); });
-      self.addEventListener('activate', (e) => { e.waitUntil(self.clients.claim()); });
-      self.addEventListener('fetch', (e) => {
-        if (e.request.method !== 'GET') return;
-        e.respondWith(
-          caches.open(CACHE).then((c) => c.match(e.request).then((hit) => {
-            const net = fetch(e.request).then((res) => { try { c.put(e.request, res.clone()); } catch (_) {} return res; }).catch(() => hit);
-            return hit || net;
-          }))
-        );
-      });`.replace('${APP_VERSION}', APP.version);
+  if ('serviceWorker' in navigator) {
     try {
-      const url = URL.createObjectURL(new Blob([sw], { type: 'text/javascript' }));
-      navigator.serviceWorker.register(url).catch(() => {});
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          registration.unregister();
+        }
+      });
     } catch (_) {}
   }
   window.addEventListener('online', () => toast('ok', 'Back online', 'Cloud assets will refresh.'));

@@ -14,11 +14,11 @@ const todayISO = () => new Date().toISOString().slice(0, 10);
 
 /* ---------------- Application System Config ---------------- */
 const APP = {
-  version: '1.4.0',
-  key: 'fm_portfolio_db_v2',
-  sessionKey: 'fm_portfolio_session_v2',
-  backupKey: 'fm_portfolio_backups_v2',
-  build: '2026.10'
+  version: '2.0.0',
+  key: 'fm_portfolio_db_v2026',
+  sessionKey: 'fm_portfolio_session_v2026',
+  backupKey: 'fm_portfolio_backups_v2026',
+  build: '20261016.2000'
 };
 
 /* ---------------- Inline SVG Icon Set ---------------- */
