@@ -169,7 +169,7 @@ function saveDB(reason = 'save') {
 function loadDB() {
   // Proactively clear legacy stored keys so no outdated cached state lingers
   try {
-    ['fm_portfolio_db', 'fm_portfolio_db_v1', 'fm_portfolio_db_v2'].forEach((k) => localStorage.removeItem(k));
+    ['fm_portfolio_db', 'fm_portfolio_db_v1', 'fm_portfolio_db_v2', 'fm_portfolio_db_v2026'].forEach((k) => localStorage.removeItem(k));
   } catch (_) {}
 
   let raw = null;
@@ -192,19 +192,20 @@ function loadDB() {
   return DB;
 }
 
-/* Merge stored data over a fresh seed while guaranteeing official CV data from PDF */
+/* Merge stored data over a fresh seed while guaranteeing official CV data from reference HTML */
 function migrate(stored, fresh) {
   const out = Object.assign({}, fresh, stored);
   out.meta = Object.assign({}, fresh.meta, stored.meta || {});
   out.settings = Object.assign({}, fresh.settings, stored.settings || {});
 
-  // Always enforce official PDF CV profile & content integrity
+  // Always enforce official profile & content integrity from reference HTML
   out.profile = Object.assign({}, fresh.profile, stored.profile || {});
   out.profile.name = fresh.profile.name;
   out.profile.title = fresh.profile.title;
-  out.profile.headline = fresh.profile.headline;
+  out.profile.altTitle = fresh.profile.altTitle;
+  out.profile.tagline = fresh.profile.tagline;
   out.profile.summary = fresh.profile.summary;
-  out.profile.objective = fresh.profile.objective;
+  out.profile.goals = fresh.profile.goals;
   out.profile.highlights = fresh.profile.highlights;
   out.profile.competencies = fresh.profile.competencies;
   out.profile.softSkills = fresh.profile.softSkills;
@@ -215,8 +216,8 @@ function migrate(stored, fresh) {
   out.profile.dob = fresh.profile.dob;
   out.profile.languages = fresh.profile.languages;
   out.profile.drivingLicence = fresh.profile.drivingLicence;
-  out.profile.stats = fresh.profile.stats;
 
+  out.stats = JSON.parse(JSON.stringify(fresh.stats));
   out.experience = JSON.parse(JSON.stringify(fresh.experience));
   out.awards = JSON.parse(JSON.stringify(fresh.awards));
   out.certifications = JSON.parse(JSON.stringify(fresh.certifications));
@@ -557,14 +558,12 @@ function initTyping() {
   const node = byId('typeRole');
   if (!node) return;
   const roles = [
-    'Senior Professional: Strategic Planning | Operations | FM',
-    'Facilities Manager — Aldar Property, UAE',
-    'Assistant Facilities Manager — Deyaar Property, UAE',
-    'FM Engineer — DAMAC, UAE',
-    'FM Coordinator — Bin Drai Enterprises, UAE',
-    'FM Supervisor — Morganti Group Inc., UAE',
-    'MEFMA Certified Facility Manager & NEBOSH IGC',
-    'B.Tech. (Electrical Engineering) — 13 Years UAE Exp.'
+    'Facilities Manager — Residential & Commercial',
+    'Assistant Facilities Manager',
+    'Property & Asset Management Specialist',
+    'MEP Operations & Building Maintenance Lead',
+    'ISO 9001 · 14001 · 45001 Compliance Owner',
+    '13+ Years in the UAE'
   ];
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { node.textContent = roles[0]; return; }
   let r = 0, c = 0, deleting = false;
@@ -1394,7 +1393,7 @@ function renderCredentials() {
   if (certs) {
     certs.innerHTML = (DB.certifications || []).map((c, i) => `
       <div class="glass card card--hover" style="padding:14px;display:flex;gap:13px;align-items:flex-start" data-reveal="fade" data-delay="${i % 5}">
-        <span class="contact-card__icon" style="width:40px;height:40px;border-radius:12px;color:var(--cyan);background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.3)">${icon('shield', 18)}</span>
+        <span class="contact-card__icon" style="width:40px;height:40px;border-radius:12px;color:var(--cyan);background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.3)">${icon('award', 18)}</span>
         <span style="flex:1;min-width:0">
           <b style="display:block;font-size:.9rem;line-height:1.35">${esc(c.name)}</b>
           <span style="display:block;font-size:.78rem;color:var(--text-3);margin-top:3px">${esc(c.issuer)}</span>

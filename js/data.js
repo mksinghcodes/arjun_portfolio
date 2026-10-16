@@ -14,11 +14,11 @@ const todayISO = () => new Date().toISOString().slice(0, 10);
 
 /* ---------------- Application System Config ---------------- */
 const APP = {
-  version: '2.0.0',
-  key: 'fm_portfolio_db_v2026',
-  sessionKey: 'fm_portfolio_session_v2026',
-  backupKey: 'fm_portfolio_backups_v2026',
-  build: '20261016.2000'
+  version: '2.1.0',
+  key: 'fm_portfolio_db_v21',
+  sessionKey: 'fm_portfolio_session_v21',
+  backupKey: 'fm_portfolio_backups_v21',
+  build: '20261016.2100'
 };
 
 /* ---------------- Inline SVG Icon Set ---------------- */
@@ -275,425 +275,1732 @@ function seedDB() {
     meta: { version: APP.version, created: nowISO(), updated: nowISO() },
     auth: { session: null, lastLogin: null },
     users: [
-      { id: uid('u'), username: 'Admin',   password: 'Admin@981474594', name: 'Arjun Singh', role: 'Super Admin', active: true,  created: nowISO(), email: 'singh.arjun0231257@gmail.com' },
-      { id: uid('u'), username: 'manager', password: 'Manager@123',     name: 'Portfolio Manager', role: 'Manager', active: true, created: nowISO(), email: '' },
-      { id: uid('u'), username: 'staff',   password: 'Staff@123',       name: 'FM Engineer', role: 'Staff', active: true, created: nowISO(), email: '' },
-      { id: uid('u'), username: 'viewer',  password: 'Viewer@123',      name: 'Owner Representative', role: 'Viewer', active: true, created: nowISO(), email: '' }
-    ],
-    profile: {
-      name: 'Arjun Singh',
-      avatar: 'assets/avatar.jpg',
-      title: 'Facilities Manager',
-      headline: 'Senior Professional: Strategic Planning | Operations | Facilities Management',
-      altTitle: 'Strategic Planning • Operations • Facilities Management',
-      tagline: 'Strategic Planning • Operations • Facilities Management — UAE',
-      photo: 'assets/profile.jpg',
-      email: 'singh.arjun0231257@gmail.com',
-      phone: '+971-50-467-2006',
-      phoneRaw: '971504672006',
-      whatsapp: '971504672006',
-      address: 'Business Bay, Dubai, United Arab Emirates',
-      dob: '1990-08-29',
-      nationality: 'Nepal',
-      visa: 'UAE Residence Visa',
-      drivingLicence: 'UAE Light Motor Vehicle driving license issued by UAE government on 17th Jan 2017',
-      languages: ['English', 'Hindi', 'Nepali', 'Bhojpuri', 'Maithili'],
-      currentAt: 'Aldar Property, UAE',
-      objective: 'Multi-tasking professional targeting senior assignments in Facilities Management to deliver quality work in a reputed organization for mutual growth, preferably in Dubai.',
-      summary: 'Versatile performer with proven skills, offering 13 years of experience focused in setting-up & managing operations of facilities and general management including renovation, preventative / grounds maintenance & upgrades. Adept at handling day-to-day activities in co-ordination with internal / external departments for ensuring smooth business operations. Proven skills in directing & delivering 24x7 service operations of all sites including design of developing procedures & performance measures, supply of materials & service, coordination with building managers & business units on project issues and property inspections. Ensuring full compliance with ISO 14001:2015, ISO 9001:2015 and ISO 45001:2018 standards.',
-      goals: 'Targeting senior assignments in Facilities Management to deliver quality work in a reputed organization for mutual growth, preferably in Dubai. Progressing into a Head of Facilities / Senior FM leadership role owning multi-asset portfolios across the UAE & GCC.',
-      highlights: [
-        '13 years of experience focused in setting-up & managing operations of facilities and general management including renovation, preventative / grounds maintenance & upgrades',
-        'Adept at handling day-to-day activities in co-ordination with internal / external departments for ensuring smooth business operations',
-        'Proven skills in directing & delivering 24x7 service operations of all sites including design of developing procedures & performance measures, supply of materials & service, coordination with building managers & business units on project issues and property inspections',
-        'Proficient in investigating the availability and suitability of options for new premises; significant experience in planning for future development in line with strategic business objectives',
-        'Monitored & managed the major assets and technologies within the workplace to ensure maximum return on investment',
-        'Allocated & managed facility space for maximum accuracy; coordinated intra-office moves; supervised maintenance and repair of facilities and equipment',
-        'Ensured compliance with the ISO standards (ISO 14001:2015, ISO 9001:2015, ISO 45001:2018)',
-        'Focused on contingency plans regarding what needs to be done in the event that certain situations occur, such as equipment breaking down unexpectedly',
-        'People Manager: directing productive cross-functional teams using interactive and motivational leadership that spurs people to willingly give 100% effort'
-      ],
-      competencies: [
-        'Corporate Strategy Planning',
-        'Property & Facility Management',
-        'Operations & Maintenance',
-        'Cross-functional Coordination',
-        'General Administration',
-        'Staff Management & Coordination',
-        'Advisory Services',
-        'Team Building & Leadership',
-        'Stakeholder Management'
-      ],
-      softSkills: [
-        'Motivator',
-        'Collaborator',
-        'Communicator',
-        'Innovator',
-        'Team Building',
-        'Problem-Solver'
-      ],
-      itSkills: [
-        'MS Excel (Advanced)',
-        'MS Word',
-        'MS PowerPoint',
-        'CAFM / Help Desk Systems',
-        'BMS (Building Management Systems)',
-        'Hardware & Networking',
-        'Application Programming'
-      ],
-      social: {
-        linkedin: 'https://www.linkedin.com/',
-        whatsapp: 'https://wa.me/971504672006?text=Hello%20Arjun,%20I%20viewed%20your%20Facilities%20Management%20portfolio',
-        email: 'mailto:singh.arjun0231257@gmail.com',
-        phone: 'tel:+971504672006'
+      {
+            "id": "u-mvb2d0qgqjt7p",
+            "username": "Admin",
+            "password": "Admin@981474594",
+            "name": "Arjun Singh",
+            "role": "Super Admin",
+            "active": true,
+            "created": "2026-10-16T14:29:17.176Z",
+            "email": "singh.arjun0231257@gmail.com"
       },
-      stats: [
-        { label: 'Years in FM & Property', value: 13, suffix: '+', icon: 'clock' },
-        { label: 'SLA compliance delivered', value: 99.4, suffix: '%', icon: 'shield' },
-        { label: 'Major developers in UAE', value: 5, suffix: ' Firms', icon: 'building' },
-        { label: 'ISO Audits Passed', value: 100, suffix: '%', icon: 'check' }
-      ]
-    },
+      {
+            "id": "u-mvb2d0qgwjlbs",
+            "username": "manager",
+            "password": "Manager@123",
+            "name": "Portfolio Manager",
+            "role": "Manager",
+            "active": true,
+            "created": "2026-10-16T14:29:17.176Z",
+            "email": ""
+      },
+      {
+            "id": "u-mvb2d0qg5llbr",
+            "username": "staff",
+            "password": "Staff@123",
+            "name": "FM Engineer",
+            "role": "Staff",
+            "active": true,
+            "created": "2026-10-16T14:29:17.176Z",
+            "email": ""
+      },
+      {
+            "id": "u-mvb2d0qgamdyg",
+            "username": "viewer",
+            "password": "Viewer@123",
+            "name": "Owner Representative",
+            "role": "Viewer",
+            "active": true,
+            "created": "2026-10-16T14:29:17.176Z",
+            "email": ""
+      }
+],
+    profile: {
+      "name": "Arjun Singh",
+      "avatar": "assets/avatar.jpg",
+      "title": "Facilities Manager",
+      "altTitle": "Assistant Facilities Manager",
+      "tagline": "Facilities · Property · Asset Management — UAE",
+      "photo": "assets/profile.jpg",
+      "email": "singh.arjun0231257@gmail.com",
+      "phone": "+971-50-467-2006",
+      "phoneRaw": "971504672006",
+      "whatsapp": "971504672006",
+      "address": "Business Bay, Dubai, United Arab Emirates",
+      "dob": "1990-08-29",
+      "nationality": "Nepal",
+      "visa": "UAE Residence Visa",
+      "drivingLicence": "UAE Light Motor Vehicle (17 Jan 2017)",
+      "languages": [
+            "English",
+            "Hindi",
+            "Nepali",
+            "Bhojpuri",
+            "Maithili"
+      ],
+      "currentAt": "Aldar Property, UAE",
+      "summary": "Versatile facilities and property management professional with 13+ years of experience setting up and running residential, commercial and hospitality operations — renovation, preventive maintenance, upgrades, MEP reliability and 24×7 service delivery across the UAE. Skilled in coordinating internal and external departments, controlling budgets and contracts, and driving ISO 14001:2015, ISO 9001:2015 and ISO 45001:2018 compliance.",
+      "goals": "Progress into a Head of Facilities / Senior FM leadership role owning multi-asset portfolios across the GCC — combining strategic asset planning, CAFM-driven analytics and sustainability/energy performance targets.",
+      "highlights": [
+            "13 years across facilities, property and asset management with 24×7 service accountability",
+            "Proven at directing cross-functional teams and third-party vendors to agreed SLAs",
+            "ISO 14001:2015, ISO 9001:2015 and ISO 45001:2018 compliance ownership",
+            "Budget drafting, monthly/quarterly financial reporting, contracts and purchase orders",
+            "Major asset and workplace technology monitoring to maximise return on investment",
+            "Contingency planning for unexpected equipment failure and business continuity"
+      ],
+      "competencies": [
+            "General Administration",
+            "Operations & Maintenance",
+            "Corporate Strategy Planning",
+            "Cross-functional Coordination",
+            "Property & Facility Management",
+            "Staff Management & Coordination",
+            "Stakeholder Management",
+            "Advisory Services",
+            "Team Building & Leadership",
+            "Preventive Maintenance",
+            "Budget & Cost Control",
+            "Contract & Vendor Management",
+            "Civil Defence Compliance",
+            "Space & Move Management",
+            "Energy & Sustainability"
+      ],
+      "softSkills": [
+            "Motivator",
+            "Collaborator",
+            "Communicator",
+            "Innovator",
+            "Team Building",
+            "Problem-Solver"
+      ],
+      "itSkills": [
+            "MS Excel (advanced)",
+            "MS Word",
+            "MS PowerPoint",
+            "CAFM / Help Desk Systems",
+            "BMS Monitoring",
+            "MS Project (Gantt planning)"
+      ],
+      "social": {
+            "linkedin": "https://www.linkedin.com/",
+            "whatsapp": "https://wa.me/971504672006",
+            "email": "mailto:singh.arjun0231257@gmail.com",
+            "phone": "tel:+971504672006"
+      }
+},
+    stats: [
+      {
+            "label": "Years in FM",
+            "value": 13,
+            "suffix": "+",
+            "icon": "clock"
+      },
+      {
+            "label": "Assets under management",
+            "value": 24,
+            "suffix": "+",
+            "icon": "building"
+      },
+      {
+            "label": "Portfolio value managed",
+            "value": 12,
+            "suffix": "M AED",
+            "icon": "coins"
+      },
+      {
+            "label": "SLA compliance",
+            "value": 98,
+            "suffix": "%",
+            "icon": "shield"
+      },
+      {
+            "label": "Work orders delivered",
+            "value": 4800,
+            "suffix": "+",
+            "icon": "wrench"
+      },
+      {
+            "label": "PPM completion rate",
+            "value": 96,
+            "suffix": "%",
+            "icon": "check"
+      }
+],
     experience: [
       {
-        company: 'Aldar Property, UAE', short: 'Aldar', logo: 'AL',
-        title: 'Facilities Manager — Residential & Commercial Projects',
-        period: "Nov'24 — Present", start: '2024-11-01', end: '', current: true,
-        location: 'Abu Dhabi / Dubai, UAE', type: 'Facilities Management',
-        points: [
-          'Leading the planning, implementation & maintenance of the infrastructure & equipment of buildings and facilities',
-          'Inspecting the facility, systems, rooms & common areas and reporting back any findings or issues to the Facility Manager',
-          'Managing quality & performance aspects of services including monthly performance reporting & maintenance of site document registry',
-          'Facilitating coordination of the emergency procedures and managing relationships with key stakeholders, through regular communication & formal review meetings'
-        ],
-        projects: ['Residential & commercial towers MEP reliability programme', 'Common-area upgrade & lifecycle renewal works', 'Emergency response & evacuation readiness protocol']
+            "company": "Aldar Property, UAE",
+            "short": "Aldar",
+            "logo": "AL",
+            "title": "Facilities Manager — Residential & Commercial Projects",
+            "period": "Nov'24 — Present",
+            "start": "2024-11-01",
+            "end": "",
+            "current": true,
+            "location": "Abu Dhabi / Dubai, UAE",
+            "type": "Facilities Management",
+            "points": [
+                  "Lead the planning, implementation and maintenance of building infrastructure and equipment across assigned residential and commercial assets",
+                  "Inspect facilities, systems, plant rooms and common areas, reporting findings and corrective actions to the Facility Manager",
+                  "Manage quality and performance aspects of service delivery, including monthly performance reporting and maintenance of the site document registry",
+                  "Facilitate coordination of emergency procedures and manage relationships with key stakeholders through regular communication and formal review meetings"
+            ],
+            "projects": [
+                  "Residential towers MEP reliability programme",
+                  "Common-area upgrade works",
+                  "Emergency response & evacuation readiness"
+            ]
       },
       {
-        company: 'Deyaar Property, UAE', short: 'Deyaar', logo: 'DY',
-        title: 'Assistant Facilities Manager in Residential, Commercial & Hospitality Projects',
-        period: "Aug'21 — Oct'24", start: '2021-08-01', end: '2024-10-31', current: false,
-        location: 'Dubai, UAE', type: 'Property & Facilities Management',
-        points: [
-          'Monitoring performance of in-house and out-sourced services to agreed service levels (SLAs)',
-          'Drafting budgets, financial reports (monthly & quarterly), contracts, expenditures and purchase orders related to the facility',
-          'Hiring, training & motivating facility personnel while maintaining positive staff relations and conducting or approving performance evaluations for staff',
-          'Coordinating with PROs on affairs related with renewal of company’s computer card & municipality license, Immigration (obtaining & renewal of visas, passport, govt. Health card, driving license)',
-          'Maintaining personnel files & documentation of all employees; preparing and issuing letters to the employees such as Employment Letter or any letter for other companies'
-        ],
-        projects: ['Service-level agreement restructuring & contractor tendering', 'Annual operating budget drafting & expenditure tracking', 'Hospitality & residential asset handover operations']
+            "company": "Deyaar Property, UAE",
+            "short": "Deyaar",
+            "logo": "DY",
+            "title": "Assistant Facilities Manager — Residential, Commercial & Hospitality",
+            "period": "Aug'21 — Oct'24",
+            "start": "2021-08-01",
+            "end": "2024-10-31",
+            "current": false,
+            "location": "Dubai, UAE",
+            "type": "Property & Facilities Management",
+            "points": [
+                  "Monitored performance of in-house and outsourced services against agreed service levels",
+                  "Drafted budgets, monthly and quarterly financial reports, contracts, expenditure and purchase orders related to the facility",
+                  "Hired, trained and motivated facility personnel while maintaining positive staff relations and conducting/approving performance evaluations",
+                  "Handled obtaining and renewal of visas, passports, government health cards and driving licences",
+                  "Maintained personnel files and documentation for all employees; prepared and issued employment and third-party letters"
+            ],
+            "projects": [
+                  "Service-level agreement restructuring",
+                  "Annual operating budget preparation",
+                  "Hospitality asset handover support"
+            ]
       },
       {
-        company: 'DAMAC, UAE', short: 'DAMAC', logo: 'DM',
-        title: 'FM Engineer in Hospitality & Residential Project',
-        period: "Oct'17 — Aug'21", start: '2017-10-01', end: '2021-08-31', current: false,
-        location: 'Dubai, UAE', type: 'MEP & Facilities Engineering',
-        points: [
-          'Developed, acquired consensus and implemented the best practice/building operation plan for assigned assets',
-          'Arranged for alterations, maintenance or reconditioning of facilities, as per operating procedure / management services agreement',
-          'Liaised with Procurement team, competitively bid & prepared non-engineering service contracts to assure high quality and cost effective services',
-          'Prepared periodic inventory of premises contents and property condition and forwarded the listing to the Property Manager for review',
-          'Ensured that services are reviewed and refinements made to enhance the services across the facility',
-          'Coordinated with all departments for smooth & trouble free operations of engineering systems, equipment and customer interaction'
-        ],
-        projects: ['Building operation plan rollout across hospitality assets', 'Non-engineering service contract tendering & procurement', 'NEBOSH Health & Safety in the workplace compliance programme']
+            "company": "DAMAC, UAE",
+            "short": "DAMAC",
+            "logo": "DM",
+            "title": "FM Engineer — Hospitality & Residential Project",
+            "period": "Oct'17 — Aug'21",
+            "start": "2017-10-01",
+            "end": "2021-08-31",
+            "current": false,
+            "location": "Dubai, UAE",
+            "type": "MEP & Facilities Engineering",
+            "points": [
+                  "Developed, acquired consensus for and implemented best-practice building operation plans for assigned assets",
+                  "Arranged alterations, maintenance and reconditioning of facilities as per operating procedures and management services agreements",
+                  "Liaised with the Procurement team, competitively bid and prepared non-engineering service contracts to assure high-quality, cost-effective services",
+                  "Prepared periodic inventory of premises contents and property condition, forwarding listings to the Property Manager for review",
+                  "Ensured services were reviewed and refined to enhance delivery across the facility, coordinating all departments for trouble-free engineering operations",
+                  "Recognised with the NEBOSH Award in Health & Safety at Work (Jan 2020) and the DAMAC Appreciation Award"
+            ],
+            "projects": [
+                  "Building operation plan rollout",
+                  "Non-engineering service contract tendering",
+                  "ISO 9001/14001/45001 compliance programme"
+            ]
       },
       {
-        company: 'Bin Drai Enterprises, UAE', short: 'Bin Drai', logo: 'BD',
-        title: 'FM Coordinator',
-        period: "Mar'15 — Sep'17", start: '2015-03-01', end: '2017-09-30', current: false,
-        location: 'Dubai, UAE', type: 'Facilities Coordination',
-        points: [
-          'Attended all Facility Management/Property meetings as required and passed on necessary information to the Maintenance team in regular junior staff meetings',
-          'Managed all necessary maintenance inspections at the required time, scheduled & supervised all repairs (both emergency & preventative to the building), monitored services installations, plant, fixtures, fittings and equipment',
-          'Initiated Purchase Request for materials / parts needed in the execution of repair & maintenance involving electrical works'
-        ],
-        projects: ['Preventative maintenance scheduling system implementation', 'Electrical repair & installation monitoring programme']
+            "company": "Bin Drai Enterprises, UAE",
+            "short": "Bin Drai",
+            "logo": "BD",
+            "title": "FM Coordinator",
+            "period": "Mar'15 — Sep'17",
+            "start": "2015-03-01",
+            "end": "2017-09-30",
+            "current": false,
+            "location": "Dubai, UAE",
+            "type": "Facilities Coordination",
+            "points": [
+                  "Attended all facility management and property meetings, relaying required information to the maintenance team in regular junior staff meetings",
+                  "Managed necessary maintenance inspections at required intervals; scheduled and supervised all emergency and preventative building repairs",
+                  "Monitored services installations, plant, fixtures, fittings and equipment",
+                  "Initiated purchase requests for materials and parts required to execute repair and maintenance involving electrical works"
+            ],
+            "projects": [
+                  "Preventative maintenance scheduling system",
+                  "Electrical repair & maintenance programme"
+            ]
       },
       {
-        company: 'Morganti Group Inc., UAE', short: 'Morganti', logo: 'MG',
-        title: 'FM Supervisor',
-        period: "Feb'11 — Mar'15", start: '2011-02-01', end: '2015-03-31', current: false,
-        location: 'UAE', type: 'MEP Supervision',
-        points: [
-          'Monitored & ensured sufficient stock to carry out repair & maintenance and to meet the Resort’s requirements',
-          'Ensured that inspections required by Government authorities are properly conducted and documented which included operation & maintenance of the buildings, electrical, mechanical & plumbing services, plant, fixtures, furnishings and equipment',
-          'Oversaw operation and maintenance of resort facilities ensuring uninterrupted 24x7 guest services'
-        ],
-        projects: ['Government inspection compliance & certification records', 'MEP plant operations, stock control & preventative maintenance']
+            "company": "Morganti Group Inc., UAE",
+            "short": "Morganti",
+            "logo": "MG",
+            "title": "FM Supervisor",
+            "period": "Feb'11 — Mar'15",
+            "start": "2011-02-01",
+            "end": "2015-03-31",
+            "current": false,
+            "location": "UAE",
+            "type": "MEP Supervision",
+            "points": [
+                  "Monitored and ensured sufficient stock to carry out repair and maintenance works",
+                  "Ensured inspections required by government authorities were properly conducted and documented",
+                  "Oversaw operation and maintenance of the buildings, electrical, mechanical and plumbing services, plant, fixtures, furnishings and equipment"
+            ],
+            "projects": [
+                  "Government inspection compliance documentation",
+                  "MEP plant operations & maintenance"
+            ]
       }
-    ],
+],
     skills: [
-      { id: 's1',  name: 'Facilities Management',            cat: 'Facilities Management', level: 96, years: 13, note: 'Multi-asset residential, commercial and hospitality operations with 24×7 accountability.' },
-      { id: 's2',  name: 'Property Management',              cat: 'Facilities Management', level: 92, years: 11, note: 'Owner associations, service charge scopes, tenant and occupier liaison.' },
-      { id: 's3',  name: 'Asset Management',                 cat: 'Asset Management',     level: 90, years: 10, note: 'Asset registers, lifecycle planning, criticality ranking and replacement forecasting.' },
-      { id: 's4',  name: 'Asset Lifecycle & Condition Audits', cat: 'Asset Management',   level: 86, years: 9,  note: 'Periodic premises inventories and condition reporting for property managers.' },
-      { id: 's5',  name: 'MEP Operations',                   cat: 'MEP',                  level: 93, years: 13, note: 'Plant room operations, engineering systems coordination and fault diagnosis.' },
-      { id: 's6',  name: 'HVAC & Chiller Plants',            cat: 'HVAC',                 level: 88, years: 11, note: 'Chiller plant performance, AHU/FCU maintenance, BMS-driven optimisation.' },
-      { id: 's7',  name: 'Electrical Systems',               cat: 'Electrical',           level: 90, years: 13, note: 'B.Tech Electrical Engineering; LV distribution, generators, UPS and lighting.' },
-      { id: 's8',  name: 'Plumbing & Drainage',              cat: 'Plumbing',             level: 78, years: 10, note: 'Water supply, drainage, pumps, water tanks and leakage remediation.' },
-      { id: 's9',  name: 'Fire & Life Safety',               cat: 'Fire & Life Safety',   level: 91, years: 10, note: 'DCD Level-1 Fire Warden; alarm/FF systems, drills and Civil Defence audits.' },
-      { id: 's10', name: 'Health, Safety & Environment',     cat: 'Fire & Life Safety',   level: 90, years: 12, note: 'NEBOSH IGC holder; risk assessments, permits to work and incident control.' },
-      { id: 's11', name: 'Contracts & Tendering',            cat: 'Contracts',            level: 85, years: 9,  note: 'Competitive bidding, non-engineering service contracts and vendor evaluation.' },
-      { id: 's12', name: 'Vendor & SLA Management',          cat: 'Contracts',            level: 88, years: 11, note: 'KPI-backed SLA measurement and monthly performance reporting.' },
-      { id: 's13', name: 'Project Management',               cat: 'Project Management',   level: 86, years: 10, note: 'Retrofit, refurbishment and compliance project delivery to budget and date.' },
-      { id: 's14', name: 'Preventive Maintenance Planning',  cat: 'MEP',                  level: 94, years: 13, note: 'PPM schedules, statutory testing calendars and completion tracking.' },
-      { id: 's15', name: 'CAFM Systems',                     cat: 'CAFM',                 level: 84, years: 8,  note: 'Asset and work-order data discipline; reporting from CAFM extracts.' },
-      { id: 's16', name: 'Help Desk & Service Requests',     cat: 'Help Desk',            level: 87, years: 10, note: 'Ticket triage, escalation matrices and response/resolution tracking.' },
-      { id: 's17', name: 'Budget Management',                cat: 'Budget Management',    level: 84, years: 9,  note: 'Operating and capital budget drafting, variance analysis and cost control.' },
-      { id: 's18', name: 'Financial Reporting',              cat: 'Budget Management',    level: 82, years: 9,  note: 'Monthly and quarterly facility financial and expenditure reporting.' },
-      { id: 's19', name: 'ISO Compliance (9001/14001/45001)',cat: 'Compliance',           level: 88, years: 8,  note: 'Document control, internal audit readiness and corrective action closure.' },
-      { id: 's20', name: 'Team Leadership & Development',    cat: 'Leadership',           level: 89, years: 11, note: 'Hiring, training, motivation and performance evaluation of FM teams.' },
-      { id: 's21', name: 'Stakeholder Management',           cat: 'Leadership',           level: 87, years: 11, note: 'Developers, owners, occupiers, authorities and contractors.' },
-      { id: 's22', name: 'Community Association Management', cat: 'Facilities Management', level: 80, years: 5, note: 'CAI M-100 trained in essentials of management for community associations.' },
-      { id: 's23', name: 'Energy & Sustainability',          cat: 'MEP',                  level: 76, years: 7,  note: 'Consumption tracking, retrofit business cases and efficiency measures.' },
-      { id: 's24', name: 'Space & Move Management',          cat: 'Facilities Management', level: 82, years: 9,  note: 'Space allocation accuracy and coordination of intra-office moves.' },
-      { id: 's25', name: 'Emergency & Contingency Planning', cat: 'Fire & Life Safety',   level: 89, years: 10, note: 'Business continuity and equipment-failure contingency procedures.' },
-      { id: 's26', name: 'MS Office & Data Reporting',       cat: 'Systems',              level: 85, years: 13, note: 'Advanced Excel analysis, Word and PowerPoint executive reporting.' }
-    ],
-    skillCategories: ['Facilities Management', 'Asset Management', 'MEP', 'HVAC', 'Electrical', 'Plumbing', 'Fire & Life Safety', 'Contracts', 'Project Management', 'CAFM', 'Help Desk', 'Budget Management', 'Compliance', 'Leadership', 'Systems'],
-    projects: [],
-    assets: [],
-    maintenance: [],
-    awards: [],
-    certifications: [],
-    education: [],
-    testimonials: [],
-    blog: [],
-    messages: [],
-    activity: [],
-    notifications: [],
-    settings: { theme: 'dark', lang: 'en', currency: 'AED', autoBackup: true, backupLimit: 8, animations: false, compact: false, org: 'Arjun Singh — FM Portfolio' }
+      {
+            "id": "s1",
+            "name": "Facilities Management",
+            "cat": "Facilities Management",
+            "level": 96,
+            "years": 13,
+            "note": "Multi-asset residential, commercial and hospitality operations with 24×7 accountability."
+      },
+      {
+            "id": "s2",
+            "name": "Property Management",
+            "cat": "Facilities Management",
+            "level": 92,
+            "years": 11,
+            "note": "Owner associations, service charge scopes, tenant and occupier liaison."
+      },
+      {
+            "id": "s3",
+            "name": "Asset Management",
+            "cat": "Asset Management",
+            "level": 90,
+            "years": 10,
+            "note": "Asset registers, lifecycle planning, criticality ranking and replacement forecasting."
+      },
+      {
+            "id": "s4",
+            "name": "Asset Lifecycle & Condition Audits",
+            "cat": "Asset Management",
+            "level": 86,
+            "years": 9,
+            "note": "Periodic premises inventories and condition reporting for property managers."
+      },
+      {
+            "id": "s5",
+            "name": "MEP Operations",
+            "cat": "MEP",
+            "level": 93,
+            "years": 13,
+            "note": "Plant room operations, engineering systems coordination and fault diagnosis."
+      },
+      {
+            "id": "s6",
+            "name": "HVAC & Chiller Plants",
+            "cat": "HVAC",
+            "level": 88,
+            "years": 11,
+            "note": "Chiller plant performance, AHU/FCU maintenance, BMS-driven optimisation."
+      },
+      {
+            "id": "s7",
+            "name": "Electrical Systems",
+            "cat": "Electrical",
+            "level": 90,
+            "years": 13,
+            "note": "B.Tech Electrical Engineering; LV distribution, generators, UPS and lighting."
+      },
+      {
+            "id": "s8",
+            "name": "Plumbing & Drainage",
+            "cat": "Plumbing",
+            "level": 78,
+            "years": 10,
+            "note": "Water supply, drainage, pumps, water tanks and leakage remediation."
+      },
+      {
+            "id": "s9",
+            "name": "Fire & Life Safety",
+            "cat": "Fire & Life Safety",
+            "level": 91,
+            "years": 10,
+            "note": "DCD Level-1 Fire Warden; alarm/FF systems, drills and Civil Defence audits."
+      },
+      {
+            "id": "s10",
+            "name": "Health, Safety & Environment",
+            "cat": "Fire & Life Safety",
+            "level": 90,
+            "years": 12,
+            "note": "NEBOSH IGC holder; risk assessments, permits to work and incident control."
+      },
+      {
+            "id": "s11",
+            "name": "Contracts & Tendering",
+            "cat": "Contracts",
+            "level": 85,
+            "years": 9,
+            "note": "Competitive bidding, non-engineering service contracts and vendor evaluation."
+      },
+      {
+            "id": "s12",
+            "name": "Vendor & SLA Management",
+            "cat": "Contracts",
+            "level": 88,
+            "years": 11,
+            "note": "KPI-backed SLA measurement and monthly performance reporting."
+      },
+      {
+            "id": "s13",
+            "name": "Project Management",
+            "cat": "Project Management",
+            "level": 86,
+            "years": 10,
+            "note": "Retrofit, refurbishment and compliance project delivery to budget and date."
+      },
+      {
+            "id": "s14",
+            "name": "Preventive Maintenance Planning",
+            "cat": "MEP",
+            "level": 94,
+            "years": 13,
+            "note": "PPM schedules, statutory testing calendars and completion tracking."
+      },
+      {
+            "id": "s15",
+            "name": "CAFM Systems",
+            "cat": "CAFM",
+            "level": 84,
+            "years": 8,
+            "note": "Asset and work-order data discipline; reporting from CAFM extracts."
+      },
+      {
+            "id": "s16",
+            "name": "Help Desk & Service Requests",
+            "cat": "Help Desk",
+            "level": 87,
+            "years": 10,
+            "note": "Ticket triage, escalation matrices and response/resolution tracking."
+      },
+      {
+            "id": "s17",
+            "name": "Budget Management",
+            "cat": "Budget Management",
+            "level": 84,
+            "years": 9,
+            "note": "Operating and capital budget drafting, variance analysis and cost control."
+      },
+      {
+            "id": "s18",
+            "name": "Financial Reporting",
+            "cat": "Budget Management",
+            "level": 82,
+            "years": 9,
+            "note": "Monthly and quarterly facility financial and expenditure reporting."
+      },
+      {
+            "id": "s19",
+            "name": "ISO Compliance (9001/14001/45001)",
+            "cat": "Compliance",
+            "level": 88,
+            "years": 8,
+            "note": "Document control, internal audit readiness and corrective action closure."
+      },
+      {
+            "id": "s20",
+            "name": "Team Leadership & Development",
+            "cat": "Leadership",
+            "level": 89,
+            "years": 11,
+            "note": "Hiring, training, motivation and performance evaluation of FM teams."
+      },
+      {
+            "id": "s21",
+            "name": "Stakeholder Management",
+            "cat": "Leadership",
+            "level": 87,
+            "years": 11,
+            "note": "Developers, owners, occupiers, authorities and contractors."
+      },
+      {
+            "id": "s22",
+            "name": "Community Association Management",
+            "cat": "Facilities Management",
+            "level": 80,
+            "years": 5,
+            "note": "CAI M-100 trained in essentials of management for community associations."
+      },
+      {
+            "id": "s23",
+            "name": "Energy & Sustainability",
+            "cat": "MEP",
+            "level": 76,
+            "years": 7,
+            "note": "Consumption tracking, retrofit business cases and efficiency measures."
+      },
+      {
+            "id": "s24",
+            "name": "Space & Move Management",
+            "cat": "Facilities Management",
+            "level": 82,
+            "years": 9,
+            "note": "Space allocation accuracy and coordination of intra-office moves."
+      },
+      {
+            "id": "s25",
+            "name": "Emergency & Contingency Planning",
+            "cat": "Fire & Life Safety",
+            "level": 89,
+            "years": 10,
+            "note": "Business continuity and equipment-failure contingency procedures."
+      },
+      {
+            "id": "s26",
+            "name": "MS Office & Data Reporting",
+            "cat": "Systems",
+            "level": 85,
+            "years": 13,
+            "note": "Advanced Excel analysis, Word and PowerPoint executive reporting."
+      }
+],
+    skillCategories: [
+      "Facilities Management",
+      "Asset Management",
+      "MEP",
+      "HVAC",
+      "Electrical",
+      "Plumbing",
+      "Fire & Life Safety",
+      "Contracts",
+      "Project Management",
+      "CAFM",
+      "Help Desk",
+      "Budget Management",
+      "Compliance",
+      "Leadership",
+      "Systems"
+]
   };
 }
 
-/* ---------------- Comprehensive Seed Dataset ---------------- */
+/* ---------------- Seed Content & Records ---------------- */
 function seedContent(db) {
   db.projects = [
     {
-      id: 'P-1001', name: 'Chiller Plant Retrofit & Optimization', client: 'Aldar Property Portfolio, UAE',
-      category: 'MEP', status: 'Completed', budget: 1850000, spent: 1796000,
-      start: '2024-11-15', end: '2025-04-20', progress: 100, priority: 'High',
-      team: ['Aldar FM Team', '3rd-party chiller contractor', 'BMS vendor'],
-      tags: ['Chiller', 'Energy', 'Retrofit'],
-      desc: 'Full retrofit and reliability overhaul of central chiller plant including compressor overhaul, condenser descaling, controls upgrade and insulation renewal across residential/commercial towers.',
-      outcomes: ['Specific power reduced from 0.92 to 0.71 kW/TR', 'Unplanned chiller downtime eliminated for 14 months', 'Payback modelled at 3.4 years'],
-      gallery: [], milestones: [
-        { name: 'Condition survey & scope', date: '2024-11-20', done: true },
-        { name: 'Contractor mobilisation', date: '2024-12-05', done: true },
-        { name: 'Compressor overhaul', date: '2025-02-15', done: true },
-        { name: 'Controls & commissioning', date: '2025-04-20', done: true }
-      ], attachments: []
+        "id": "P-1001",
+        "name": "Chiller Plant Retrofit — Tower A",
+        "client": "Owners Association, Tower A",
+        "category": "MEP",
+        "status": "Completed",
+        "budget": 1850000,
+        "spent": 1796000,
+        "start": "2024-02-01",
+        "end": "2024-06-15",
+        "progress": 100,
+        "priority": "High",
+        "team": [
+            "MEP Team",
+            "3rd-party chiller contractor",
+            "BMS vendor"
+        ],
+        "tags": [
+            "Chiller",
+            "Energy",
+            "Retrofit"
+        ],
+        "desc": "Full retrofit of the central chiller plant including compressor overhaul, condenser descaling, controls upgrade and insulation renewal — restoring design capacity and cutting specific power consumption.",
+        "outcomes": [
+            "Specific power reduced from 0.92 to 0.71 kW/TR",
+            "Unplanned chiller downtime eliminated for 14 months",
+            "Payback modelled at 3.4 years"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "Condition survey & scope",
+                "date": "2024-02-10",
+                "done": true
+            },
+            {
+                "name": "Contractor mobilisation",
+                "date": "2024-03-01",
+                "done": true
+            },
+            {
+                "name": "Compressor overhaul",
+                "date": "2024-04-20",
+                "done": true
+            },
+            {
+                "name": "Controls & commissioning",
+                "date": "2024-06-15",
+                "done": true
+            }
+        ],
+        "attachments": []
     },
     {
-      id: 'P-1002', name: 'Lobby & Amenity Refurbishment', client: 'Deyaar Property Management, UAE',
-      category: 'Refurbishment', status: 'Completed', budget: 3200000, spent: 3040000,
-      start: '2023-09-01', end: '2024-03-01', progress: 100, priority: 'High',
-      team: ['Interior contractor', 'Deyaar FM Team', 'ID Consultant'],
-      tags: ['Fit-out', 'Amenity', 'Finishes'],
-      desc: 'Comprehensive refresh of lobby, gym and pool-deck finishes across multi-building residential & commercial assets — stone and joinery replacement, lighting redesign, pool-deck slip-resistant surfacing and FF&E renewal.',
-      outcomes: ['Phased access maintained for residents throughout with zero complaints', 'Enhanced asset valuation and tenant satisfaction scores'],
-      gallery: [], milestones: [
-        { name: 'Design freeze & tender', date: '2023-09-15', done: true },
-        { name: 'Tower 1 lobby complete', date: '2023-12-20', done: true },
-        { name: 'Gym & pool deck renewal', date: '2024-02-01', done: true },
-        { name: 'Snag closure & handover', date: '2024-03-01', done: true }
-      ], attachments: []
+        "id": "P-1002",
+        "name": "Lobby & Amenity Refurbishment",
+        "client": "Developer",
+        "category": "Refurbishment",
+        "status": "Ongoing",
+        "budget": 3200000,
+        "spent": 1740000,
+        "start": "2025-09-01",
+        "end": "2026-03-01",
+        "progress": 55,
+        "priority": "High",
+        "team": [
+            "Interior contractor",
+            "FM Team",
+            "ID Consultant"
+        ],
+        "tags": [
+            "Fit-out",
+            "Amenity",
+            "Finishes"
+        ],
+        "desc": "Refresh of lobby, gym and pool-deck finishes across two towers — stone and joinery replacement, lighting redesign, pool-deck slip-resistant surfacing and FF&E renewal.",
+        "outcomes": [
+            "Phased access maintained for residents throughout"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "Design freeze",
+                "date": "2025-09-15",
+                "done": true
+            },
+            {
+                "name": "Tower 1 lobby complete",
+                "date": "2025-12-20",
+                "done": true
+            },
+            {
+                "name": "Gym & pool deck",
+                "date": "2026-02-01",
+                "done": false
+            },
+            {
+                "name": "Snag & handover",
+                "date": "2026-03-01",
+                "done": false
+            }
+        ],
+        "attachments": []
     },
     {
-      id: 'P-1003', name: 'Fire Alarm & Life Safety System Upgrade (DCD)', client: 'DAMAC Hotel & Resorts / LOAMS',
-      category: 'Safety', status: 'Completed', budget: 1450000, spent: 1380000,
-      start: '2020-02-01', end: '2020-10-30', progress: 100, priority: 'Critical',
-      team: ['NAFFCO Fire contractor', 'DCD-approved consultant', 'DAMAC FM Engineering'],
-      tags: ['Fire Alarm', 'DCD', 'Compliance'],
-      desc: 'Upgrade of addressable fire alarm panels, detection loops and cause-and-effect matrix to meet the latest Civil Defence code, including voice evacuation interfacing and NEBOSH safety compliance.',
-      outcomes: ['Zero DCD observations at final Civil Defence audit', 'Contributed to NEBOSH and DAMAC Appreciation recognition'],
-      gallery: [], milestones: [
-        { name: 'DCD drawing approval', date: '2020-02-20', done: true },
-        { name: 'Panel replacement & wiring', date: '2020-05-15', done: true },
-        { name: 'Loop & device commissioning', date: '2020-08-10', done: true },
-        { name: 'Final DCD inspection sign-off', date: '2020-10-30', done: true }
-      ], attachments: []
+        "id": "P-1003",
+        "name": "Fire Alarm System Upgrade (DCD)",
+        "client": "Civil Defence Compliance",
+        "category": "Safety",
+        "status": "Ongoing",
+        "budget": 1450000,
+        "spent": 580000,
+        "start": "2025-11-01",
+        "end": "2026-04-30",
+        "progress": 40,
+        "priority": "Critical",
+        "team": [
+            "Fire safety contractor",
+            "DCD-approved consultant",
+            "FM Team"
+        ],
+        "tags": [
+            "Fire Alarm",
+            "DCD",
+            "Compliance"
+        ],
+        "desc": "Upgrade of addressable fire alarm panels, detection loops and cause-and-effect matrix to meet the latest Civil Defence code, including voice evacuation interfacing.",
+        "outcomes": [
+            "Zero DCD observations at last interim inspection"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "DCD drawing approval",
+                "date": "2025-11-20",
+                "done": true
+            },
+            {
+                "name": "Panel replacement",
+                "date": "2026-01-15",
+                "done": true
+            },
+            {
+                "name": "Loop & device testing",
+                "date": "2026-03-10",
+                "done": false
+            },
+            {
+                "name": "Final DCD inspection",
+                "date": "2026-04-30",
+                "done": false
+            }
+        ],
+        "attachments": []
     },
     {
-      id: 'P-1004', name: 'Landscape Irrigation Automation & Water Saving', client: 'DAMAC / Luxury Community Associations',
-      category: 'Landscaping', status: 'Completed', budget: 620000, spent: 590000,
-      start: '2019-04-01', end: '2019-09-01', progress: 100, priority: 'Medium',
-      team: ['Landscaping vendor', 'Irrigation specialist', 'DAMAC FM'],
-      tags: ['Irrigation', 'Water Saving', 'Sustainability'],
-      desc: 'Automated drip irrigation with soil-moisture and weather-based controllers across community podium gardens to reduce municipal water consumption and manual labour.',
-      outcomes: ['Delivered 32% reduction in irrigation water expenditure', 'Automated fault alerts to central facilities desk'],
-      gallery: [], milestones: [
-        { name: 'Scope & BOQ', date: '2019-04-10', done: true },
-        { name: 'Installation & piping', date: '2019-06-20', done: true },
-        { name: 'Commissioning & testing', date: '2019-09-01', done: true }
-      ], attachments: []
+        "id": "P-1004",
+        "name": "Landscape Irrigation Automation",
+        "client": "Community Association",
+        "category": "Landscaping",
+        "status": "Planned",
+        "budget": 620000,
+        "spent": 0,
+        "start": "2026-09-01",
+        "end": "2026-12-01",
+        "progress": 0,
+        "priority": "Medium",
+        "team": [
+            "Landscaping vendor",
+            "Irrigation specialist"
+        ],
+        "tags": [
+            "Irrigation",
+            "Water Saving",
+            "Sustainability"
+        ],
+        "desc": "Automated drip irrigation with soil-moisture and weather-based controllers across podium gardens to reduce water consumption and manual labour.",
+        "outcomes": [
+            "Target 32% reduction in irrigation water"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "Scope & BOQ",
+                "date": "2026-09-10",
+                "done": false
+            },
+            {
+                "name": "Installation",
+                "date": "2026-10-20",
+                "done": false
+            },
+            {
+                "name": "Commissioning",
+                "date": "2026-12-01",
+                "done": false
+            }
+        ],
+        "attachments": []
     },
     {
-      id: 'P-1005', name: 'Podium Waterproofing & Structural Remediation', client: 'Bin Drai Enterprises, UAE',
-      category: 'MEP', status: 'Completed', budget: 980000, spent: 940000,
-      start: '2016-01-10', end: '2016-06-25', progress: 100, priority: 'High',
-      team: ['Waterproofing specialist', 'Bin Drai FM Coordination team'],
-      tags: ['Waterproofing', 'Leakage', 'Structure'],
-      desc: 'Remedial waterproofing to podium slab, expansion joints and planters following recurring leakage into retail units and parking basements.',
-      outcomes: ['Zero water ingress across retail and basement zones following remediation', 'Extended structural waterproofing warranty by 10 years'],
-      gallery: [], milestones: [
-        { name: 'Leak investigation & core test', date: '2016-01-20', done: true },
-        { name: 'Trial patch & membrane testing', date: '2016-03-10', done: true },
-        { name: 'Full remediation & flood test', date: '2016-06-25', done: true }
-      ], attachments: []
+        "id": "P-1005",
+        "name": "Podium Waterproofing Remediation",
+        "client": "Owners Association, Tower B",
+        "category": "MEP",
+        "status": "On Hold",
+        "budget": 980000,
+        "spent": 196000,
+        "start": "2025-05-01",
+        "end": "2025-10-01",
+        "progress": 20,
+        "priority": "High",
+        "team": [
+            "Waterproofing specialist",
+            "FM Team"
+        ],
+        "tags": [
+            "Waterproofing",
+            "Leakage",
+            "Structure"
+        ],
+        "desc": "Remedial waterproofing to podium slab and planters following recurring leakage into retail units. Works paused pending owner-association budget approval.",
+        "outcomes": [
+            "Interim leak diversion in place; no further tenant claims since June"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "Leak investigation",
+                "date": "2025-05-20",
+                "done": true
+            },
+            {
+                "name": "Trial patch & testing",
+                "date": "2025-07-10",
+                "done": true
+            },
+            {
+                "name": "Full remediation",
+                "date": "2026-06-01",
+                "done": false
+            }
+        ],
+        "attachments": []
     },
     {
-      id: 'P-1006', name: 'BMS Central Integration & Energy Telemetry', client: 'Morganti Group Inc. / Hospitality Assets',
-      category: 'MEP', status: 'Completed', budget: 2100000, spent: 2015000,
-      start: '2013-05-01', end: '2014-02-15', progress: 100, priority: 'High',
-      team: ['Honeywell BMS vendor', 'Morganti MEP Team'],
-      tags: ['BMS', 'Controls', 'Energy'],
-      desc: 'Integration of chillers, booster pumps, AHUs and common-area lighting into a single BMS platform with trend logging, alarms and scheduled optimisation strategies for 24x7 guest operations.',
-      outcomes: ['Alarm flood reduced 64% via rationalisation', 'Uninterrupted 24x7 guest service reliability maintained'],
-      gallery: [], milestones: [
-        { name: 'Point schedule approval', date: '2013-05-20', done: true },
-        { name: 'Field device wiring & DDC', date: '2013-08-30', done: true },
-        { name: 'Graphics & trends setup', date: '2013-11-15', done: true },
-        { name: 'Handover & authority sign-off', date: '2014-02-15', done: true }
-      ], attachments: []
+        "id": "P-1006",
+        "name": "BMS Integration — Phase 2",
+        "client": "Developer",
+        "category": "MEP",
+        "status": "Completed",
+        "budget": 2100000,
+        "spent": 2015000,
+        "start": "2023-08-01",
+        "end": "2024-01-20",
+        "progress": 100,
+        "priority": "High",
+        "team": [
+            "BMS vendor",
+            "MEP Team"
+        ],
+        "tags": [
+            "BMS",
+            "Controls",
+            "Energy"
+        ],
+        "desc": "Integration of chillers, pumps, AHUs and common-area lighting into a single BMS platform with trend logging, alarms and scheduled optimisation strategies.",
+        "outcomes": [
+            "Alarm flood reduced 64% via rationalisation",
+            "Night setback strategy adopted portfolio-wide"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "Point schedule approval",
+                "date": "2023-08-20",
+                "done": true
+            },
+            {
+                "name": "Field device wiring",
+                "date": "2023-10-30",
+                "done": true
+            },
+            {
+                "name": "Graphics & trends",
+                "date": "2023-12-15",
+                "done": true
+            },
+            {
+                "name": "Handover & training",
+                "date": "2024-01-20",
+                "done": true
+            }
+        ],
+        "attachments": []
     },
     {
-      id: 'P-1007', name: 'Annual Hard & Soft Services Contract Re-tender', client: 'Deyaar Property Management, UAE',
-      category: 'Contracts', status: 'Completed', budget: 340000, spent: 318000,
-      start: '2022-03-01', end: '2022-06-30', progress: 100, priority: 'Medium',
-      team: ['Procurement', 'Deyaar FM Operations Team'],
-      tags: ['Tender', 'SLA', 'Cost Saving'],
-      desc: 'Competitive re-tender of the integrated hard and soft services contracts across residential portfolios with re-scoped KPIs, statutory testing matrix and SLA penalty/incentive frameworks.',
-      outcomes: ['12.8% operational cost reduction while elevating KPI compliance to 99.4%', 'Streamlined vendor escalation and quarterly review protocols'],
-      gallery: [], milestones: [
-        { name: 'Scope & KPI drafting', date: '2022-03-15', done: true },
-        { name: 'Bid evaluation & commercial review', date: '2022-05-10', done: true },
-        { name: 'Award & contractor mobilisation', date: '2022-06-30', done: true }
-      ], attachments: []
+        "id": "P-1007",
+        "name": "Annual PPM Contract Re-tender",
+        "client": "Asset Owner",
+        "category": "Contracts",
+        "status": "Completed",
+        "budget": 240000,
+        "spent": 218000,
+        "start": "2024-09-01",
+        "end": "2024-11-30",
+        "progress": 100,
+        "priority": "Medium",
+        "team": [
+            "Procurement",
+            "FM Team"
+        ],
+        "tags": [
+            "Tender",
+            "SLA",
+            "Cost Saving"
+        ],
+        "desc": "Competitive re-tender of the integrated hard-services PPM contract with re-scoped KPIs, statutory testing matrix and penalty/incentive framework.",
+        "outcomes": [
+            "11.4% cost reduction at improved KPI thresholds"
+        ],
+        "gallery": [],
+        "milestones": [
+            {
+                "name": "Scope & KPI drafting",
+                "date": "2024-09-20",
+                "done": true
+            },
+            {
+                "name": "Bid evaluation",
+                "date": "2024-10-25",
+                "done": true
+            },
+            {
+                "name": "Award & mobilisation",
+                "date": "2024-11-30",
+                "done": true
+            }
+        ],
+        "attachments": []
     }
-  ];
+];
 
   db.assets = [
-    { id: 'A-01', tag: 'AST-HVAC-001', name: 'Chiller Unit 1 (Carrier 400TR)', category: 'HVAC', location: 'Tower A — Central Plant Room', status: 'Operational', criticality: 'Critical', install: '2019-03-01', warranty: '2027-03-01', vendor: 'Carrier / chiller contractor', cost: 780000, lifeYears: 20, lastService: '2026-07-04', nextService: '2026-08-04', notes: 'Compressor overhauled in 2024 retrofit.' },
-    { id: 'A-02', tag: 'AST-HVAC-002', name: 'Chiller Unit 2 (Carrier 400TR)', category: 'HVAC', location: 'Tower A — Central Plant Room', status: 'Operational', criticality: 'Critical', install: '2019-03-01', warranty: '2027-03-01', vendor: 'Carrier / chiller contractor', cost: 780000, lifeYears: 20, lastService: '2026-07-06', nextService: '2026-08-06', notes: '' },
-    { id: 'A-03', tag: 'AST-FLS-001', name: 'Fire Pump Set (Electric + Jockey)', category: 'Fire & Life Safety', location: 'Tower A — Basement Pump Room', status: 'Operational', criticality: 'Critical', install: '2018-11-15', warranty: '2023-11-15', vendor: 'NAFFCO', cost: 210000, lifeYears: 15, lastService: '2026-07-07', nextService: '2026-08-07', notes: 'Weekly churn test logged in CAFM.' },
-    { id: 'A-04', tag: 'AST-VT-001', name: 'Elevator Bank 1 (4 cars)', category: 'Vertical Transport', location: 'Tower A — Service Core', status: 'Under Maintenance', criticality: 'High', install: '2018-06-01', warranty: '2023-06-01', vendor: 'OTIS', cost: 1450000, lifeYears: 25, lastService: '2026-08-01', nextService: '2026-08-15', notes: 'Car 3 door operator fault under rectification.' },
-    { id: 'A-05', tag: 'AST-ELEC-001', name: 'Standby Generator 1250 kVA', category: 'Electrical', location: 'Tower B — Generator Yard', status: 'Operational', criticality: 'Critical', install: '2020-01-10', warranty: '2025-01-10', vendor: 'Cummins', cost: 1250000, lifeYears: 20, lastService: '2026-07-11', nextService: '2026-08-11', notes: 'Monthly load test at 80% rated load.' },
-    { id: 'A-06', tag: 'AST-PLB-001', name: 'Pool Filtration & Dosing Unit', category: 'Plumbing', location: 'Amenity Deck — Pool Plant', status: 'Operational', criticality: 'Medium', install: '2016-05-01', warranty: '2019-05-01', vendor: 'Hayward', cost: 145000, lifeYears: 12, lastService: '2026-07-20', nextService: '2026-08-20', notes: 'Replacement business case drafted for FY27.' },
-    { id: 'A-07', tag: 'AST-BMS-001', name: 'BMS Head-End & Controllers', category: 'Controls / BMS', location: 'Tower A — FM Office / Risers', status: 'Operational', criticality: 'High', install: '2023-08-01', warranty: '2026-08-01', vendor: 'Honeywell', cost: 860000, lifeYears: 12, lastService: '2026-07-02', nextService: '2026-09-02', notes: 'Phase-2 integration completed Jan 2024.' },
-    { id: 'A-08', tag: 'AST-ELEC-002', name: 'Main LV Switchgear & Panels', category: 'Electrical', location: 'Tower A/B — LV Rooms', status: 'Operational', criticality: 'Critical', install: '2018-04-01', warranty: '2023-04-01', vendor: 'Schneider', cost: 1680000, lifeYears: 25, lastService: '2026-06-18', nextService: '2026-12-18', notes: 'Thermographic survey done annually.' },
-    { id: 'A-09', tag: 'AST-FLS-002', name: 'Addressable Fire Alarm Panel', category: 'Fire & Life Safety', location: 'Tower A — Security Control Room', status: 'Under Maintenance', criticality: 'Critical', install: '2018-09-01', warranty: '2023-09-01', vendor: 'Honeywell Gent', cost: 320000, lifeYears: 15, lastService: '2026-08-02', nextService: '2026-08-16', notes: 'Being replaced under DCD upgrade project P-1003.' },
-    { id: 'A-10', tag: 'AST-PLB-002', name: 'Domestic Water Booster Pumps', category: 'Plumbing', location: 'Tower B — Wet Riser Room', status: 'Operational', criticality: 'High', install: '2019-07-15', warranty: '2024-07-15', vendor: 'Grundfos', cost: 185000, lifeYears: 15, lastService: '2026-07-25', nextService: '2026-08-25', notes: '' },
-    { id: 'A-11', tag: 'AST-ELEC-003', name: 'UPS System 200 kVA', category: 'Electrical', location: 'Tower A — Server Room', status: 'Operational', criticality: 'High', install: '2019-02-01', warranty: '2024-02-01', vendor: 'Eaton', cost: 240000, lifeYears: 12, lastService: '2026-07-15', nextService: '2026-10-15', notes: 'Battery string due for replacement in 2027.' },
-    { id: 'A-12', tag: 'AST-HVAC-003', name: 'AHU Set — Levels 1-8', category: 'HVAC', location: 'Tower A — AHU Rooms', status: 'Operational', criticality: 'High', install: '2018-08-01', warranty: '2021-08-01', vendor: 'Zamil', cost: 540000, lifeYears: 18, lastService: '2026-07-30', nextService: '2026-08-30', notes: 'Filter and belt schedule per PPM.' },
-    { id: 'A-13', tag: 'AST-LIFT-002', name: 'Service Lift (Tower B)', category: 'Vertical Transport', location: 'Tower B — Core', status: 'Faulty', criticality: 'High', install: '2018-06-01', warranty: '2023-06-01', vendor: 'KONE', cost: 420000, lifeYears: 25, lastService: '2026-08-02', nextService: '2026-08-05', notes: 'Door interlock reported 2 Aug; vendor attending.' },
-    { id: 'A-14', tag: 'AST-ELEC-004', name: 'Common Area Lighting Controls', category: 'Electrical', location: 'Podium & Car Parks', status: 'Operational', criticality: 'Medium', install: '2023-08-01', warranty: '2026-08-01', vendor: 'Philips / Dynalite', cost: 320000, lifeYears: 12, lastService: '2026-06-28', nextService: '2026-09-28', notes: 'Schedules tied to BMS occupancy logic.' },
-    { id: 'A-15', tag: 'AST-MISC-001', name: 'Gym & Pool Equipment Set', category: 'Amenity', location: 'Amenity Deck', status: 'Operational', criticality: 'Low', install: '2020-10-01', warranty: '2023-10-01', vendor: 'Technogym', cost: 260000, lifeYears: 8, lastService: '2026-07-18', nextService: '2026-09-18', notes: 'Refurbishment included in P-1002 scope.' },
-    { id: 'A-16', tag: 'AST-FLS-003', name: 'Wet Riser & Sprinkler System', category: 'Fire & Life Safety', location: 'Tower A & B — Risers', status: 'Operational', criticality: 'Critical', install: '2018-09-01', warranty: '2023-09-01', vendor: 'NAFFCO', cost: 680000, lifeYears: 20, lastService: '2026-07-09', nextService: '2026-08-09', notes: 'Quarterly flow test recorded.' }
-  ];
+    {
+        "id": "A-01",
+        "tag": "AST-HVAC-001",
+        "name": "Chiller Unit 1 (Carrier 400TR)",
+        "category": "HVAC",
+        "location": "Tower A — Central Plant Room",
+        "status": "Operational",
+        "criticality": "Critical",
+        "install": "2019-03-01",
+        "warranty": "2027-03-01",
+        "vendor": "Carrier / chiller contractor",
+        "cost": 780000,
+        "lifeYears": 20,
+        "lastService": "2026-07-04",
+        "nextService": "2026-08-04",
+        "notes": "Compressor overhauled in 2024 retrofit."
+    },
+    {
+        "id": "A-02",
+        "tag": "AST-HVAC-002",
+        "name": "Chiller Unit 2 (Carrier 400TR)",
+        "category": "HVAC",
+        "location": "Tower A — Central Plant Room",
+        "status": "Operational",
+        "criticality": "Critical",
+        "install": "2019-03-01",
+        "warranty": "2027-03-01",
+        "vendor": "Carrier / chiller contractor",
+        "cost": 780000,
+        "lifeYears": 20,
+        "lastService": "2026-07-06",
+        "nextService": "2026-08-06",
+        "notes": ""
+    },
+    {
+        "id": "A-03",
+        "tag": "AST-FLS-001",
+        "name": "Fire Pump Set (Electric + Jockey)",
+        "category": "Fire & Life Safety",
+        "location": "Tower A — Basement Pump Room",
+        "status": "Operational",
+        "criticality": "Critical",
+        "install": "2018-11-15",
+        "warranty": "2023-11-15",
+        "vendor": "NAFFCO",
+        "cost": 210000,
+        "lifeYears": 15,
+        "lastService": "2026-07-07",
+        "nextService": "2026-08-07",
+        "notes": "Weekly churn test logged in CAFM."
+    },
+    {
+        "id": "A-04",
+        "tag": "AST-VT-001",
+        "name": "Elevator Bank 1 (4 cars)",
+        "category": "Vertical Transport",
+        "location": "Tower A — Service Core",
+        "status": "Under Maintenance",
+        "criticality": "High",
+        "install": "2018-06-01",
+        "warranty": "2023-06-01",
+        "vendor": "OTIS",
+        "cost": 1450000,
+        "lifeYears": 25,
+        "lastService": "2026-08-01",
+        "nextService": "2026-08-15",
+        "notes": "Car 3 door operator fault under rectification."
+    },
+    {
+        "id": "A-05",
+        "tag": "AST-ELEC-001",
+        "name": "Standby Generator 1250 kVA",
+        "category": "Electrical",
+        "location": "Tower B — Generator Yard",
+        "status": "Operational",
+        "criticality": "Critical",
+        "install": "2020-01-10",
+        "warranty": "2025-01-10",
+        "vendor": "Cummins",
+        "cost": 1250000,
+        "lifeYears": 20,
+        "lastService": "2026-07-11",
+        "nextService": "2026-08-11",
+        "notes": "Monthly load test at 80% rated load."
+    },
+    {
+        "id": "A-06",
+        "tag": "AST-PLB-001",
+        "name": "Pool Filtration & Dosing Unit",
+        "category": "Plumbing",
+        "location": "Amenity Deck — Pool Plant",
+        "status": "Operational",
+        "criticality": "Medium",
+        "install": "2016-05-01",
+        "warranty": "2019-05-01",
+        "vendor": "Hayward",
+        "cost": 145000,
+        "lifeYears": 12,
+        "lastService": "2026-07-20",
+        "nextService": "2026-08-20",
+        "notes": "Replacement business case drafted for FY27."
+    },
+    {
+        "id": "A-07",
+        "tag": "AST-BMS-001",
+        "name": "BMS Head-End & Controllers",
+        "category": "Controls / BMS",
+        "location": "Tower A — FM Office / Risers",
+        "status": "Operational",
+        "criticality": "High",
+        "install": "2023-08-01",
+        "warranty": "2026-08-01",
+        "vendor": "Honeywell",
+        "cost": 860000,
+        "lifeYears": 12,
+        "lastService": "2026-07-02",
+        "nextService": "2026-09-02",
+        "notes": "Phase-2 integration completed Jan 2024."
+    },
+    {
+        "id": "A-08",
+        "tag": "AST-ELEC-002",
+        "name": "Main LV Switchgear & Panels",
+        "category": "Electrical",
+        "location": "Tower A/B — LV Rooms",
+        "status": "Operational",
+        "criticality": "Critical",
+        "install": "2018-04-01",
+        "warranty": "2023-04-01",
+        "vendor": "Schneider",
+        "cost": 1680000,
+        "lifeYears": 25,
+        "lastService": "2026-06-18",
+        "nextService": "2026-12-18",
+        "notes": "Thermographic survey done annually."
+    },
+    {
+        "id": "A-09",
+        "tag": "AST-FLS-002",
+        "name": "Addressable Fire Alarm Panel",
+        "category": "Fire & Life Safety",
+        "location": "Tower A — Security Control Room",
+        "status": "Under Maintenance",
+        "criticality": "Critical",
+        "install": "2018-09-01",
+        "warranty": "2023-09-01",
+        "vendor": "Honeywell Gent",
+        "cost": 320000,
+        "lifeYears": 15,
+        "lastService": "2026-08-02",
+        "nextService": "2026-08-16",
+        "notes": "Being replaced under DCD upgrade project P-1003."
+    },
+    {
+        "id": "A-10",
+        "tag": "AST-PLB-002",
+        "name": "Domestic Water Booster Pumps",
+        "category": "Plumbing",
+        "location": "Tower B — Wet Riser Room",
+        "status": "Operational",
+        "criticality": "High",
+        "install": "2019-07-15",
+        "warranty": "2024-07-15",
+        "vendor": "Grundfos",
+        "cost": 185000,
+        "lifeYears": 15,
+        "lastService": "2026-07-25",
+        "nextService": "2026-08-25",
+        "notes": ""
+    },
+    {
+        "id": "A-11",
+        "tag": "AST-ELEC-003",
+        "name": "UPS System 200 kVA",
+        "category": "Electrical",
+        "location": "Tower A — Server Room",
+        "status": "Operational",
+        "criticality": "High",
+        "install": "2019-02-01",
+        "warranty": "2024-02-01",
+        "vendor": "Eaton",
+        "cost": 240000,
+        "lifeYears": 12,
+        "lastService": "2026-07-15",
+        "nextService": "2026-10-15",
+        "notes": "Battery string due for replacement in 2027."
+    },
+    {
+        "id": "A-12",
+        "tag": "AST-HVAC-003",
+        "name": "AHU Set — Levels 1-8",
+        "category": "HVAC",
+        "location": "Tower A — AHU Rooms",
+        "status": "Operational",
+        "criticality": "High",
+        "install": "2018-08-01",
+        "warranty": "2021-08-01",
+        "vendor": "Zamil",
+        "cost": 540000,
+        "lifeYears": 18,
+        "lastService": "2026-07-30",
+        "nextService": "2026-08-30",
+        "notes": "Filter and belt schedule per PPM."
+    },
+    {
+        "id": "A-13",
+        "tag": "AST-LIFT-002",
+        "name": "Service Lift (Tower B)",
+        "category": "Vertical Transport",
+        "location": "Tower B — Core",
+        "status": "Faulty",
+        "criticality": "High",
+        "install": "2018-06-01",
+        "warranty": "2023-06-01",
+        "vendor": "KONE",
+        "cost": 420000,
+        "lifeYears": 25,
+        "lastService": "2026-08-02",
+        "nextService": "2026-08-05",
+        "notes": "Door interlock reported 2 Aug; vendor attending."
+    },
+    {
+        "id": "A-14",
+        "tag": "AST-ELEC-004",
+        "name": "Common Area Lighting Controls",
+        "category": "Electrical",
+        "location": "Podium & Car Parks",
+        "status": "Operational",
+        "criticality": "Medium",
+        "install": "2023-08-01",
+        "warranty": "2026-08-01",
+        "vendor": "Philips / Dynalite",
+        "cost": 320000,
+        "lifeYears": 12,
+        "lastService": "2026-06-28",
+        "nextService": "2026-09-28",
+        "notes": "Schedules tied to BMS occupancy logic."
+    },
+    {
+        "id": "A-15",
+        "tag": "AST-MISC-001",
+        "name": "Gym & Pool Equipment Set",
+        "category": "Amenity",
+        "location": "Amenity Deck",
+        "status": "Operational",
+        "criticality": "Low",
+        "install": "2020-10-01",
+        "warranty": "2023-10-01",
+        "vendor": "Technogym",
+        "cost": 260000,
+        "lifeYears": 8,
+        "lastService": "2026-07-18",
+        "nextService": "2026-09-18",
+        "notes": "Refurbishment included in P-1002 scope."
+    },
+    {
+        "id": "A-16",
+        "tag": "AST-FLS-003",
+        "name": "Wet Riser & Sprinkler System",
+        "category": "Fire & Life Safety",
+        "location": "Tower A & B — Risers",
+        "status": "Operational",
+        "criticality": "Critical",
+        "install": "2018-09-01",
+        "warranty": "2023-09-01",
+        "vendor": "NAFFCO",
+        "cost": 680000,
+        "lifeYears": 20,
+        "lastService": "2026-07-09",
+        "nextService": "2026-08-09",
+        "notes": "Quarterly flow test recorded."
+    }
+];
 
   db.maintenance = [
-    { id: 'WO-201', title: 'Chiller Unit 1 — Monthly PPM', type: 'Preventive', asset: 'Chiller Unit 1 (Carrier 400TR)', assetId: 'A-01', tech: 'Bikash Rai', priority: 'High', date: '2026-08-04', due: '2026-08-04', status: 'Scheduled', cost: 0, notes: 'Compressor amps, condenser approach, oil analysis.' },
-    { id: 'WO-202', title: 'Fire Pump Set — Weekly Churn Test', type: 'Preventive', asset: 'Fire Pump Set (Electric + Jockey)', assetId: 'A-03', tech: 'Suresh KC', priority: 'Critical', date: '2026-08-07', due: '2026-08-07', status: 'Scheduled', cost: 0, notes: 'Record pressure at churn and 100% flow.' },
-    { id: 'WO-203', title: 'Elevator Bank 1 — Car 3 Door Fault', type: 'Reactive', asset: 'Elevator Bank 1 (4 cars)', assetId: 'A-04', tech: 'OTIS Vendor', priority: 'High', date: '2026-08-01', due: '2026-08-03', status: 'In Progress', cost: 4200, notes: 'Door operator PCB suspected; resident notice issued.' },
-    { id: 'WO-204', title: 'Generator 1250 kVA — Monthly Load Test', type: 'Preventive', asset: 'Standby Generator 1250 kVA', assetId: 'A-05', tech: 'Bikash Rai', priority: 'High', date: '2026-08-11', due: '2026-08-11', status: 'Scheduled', cost: 0, notes: '30-minute run at 80% load; coolant and fuel check.' },
-    { id: 'WO-205', title: 'Service Lift Tower B — Door Interlock', type: 'Reactive', asset: 'Service Lift (Tower B)', assetId: 'A-13', tech: 'KONE Vendor', priority: 'Critical', date: '2026-08-02', due: '2026-08-02', status: 'Overdue', cost: 0, notes: 'Lift locked off; vendor attendance overdue — escalated.' },
-    { id: 'WO-206', title: 'Fire Alarm Panel — Loop Diagnostics', type: 'Reactive', asset: 'Addressable Fire Alarm Panel', assetId: 'A-09', tech: 'Honeywell Gent', priority: 'Critical', date: '2026-08-02', due: '2026-08-06', status: 'In Progress', cost: 9500, notes: 'Loop 3 intermittent faults pre-replacement.' },
-    { id: 'WO-207', title: 'AHU Set — Filter & Belt Replacement', type: 'Preventive', asset: 'AHU Set — Levels 1-8', assetId: 'A-12', tech: 'MEP Team', priority: 'Medium', date: '2026-07-30', due: '2026-07-30', status: 'Completed', cost: 6800, notes: 'All 12 AHUs completed; filters logged.' },
-    { id: 'WO-208', title: 'Pool Dosing Controller — Calibration', type: 'Preventive', asset: 'Pool Filtration & Dosing Unit', assetId: 'A-06', tech: 'Suresh KC', priority: 'Medium', date: '2026-07-20', due: '2026-07-20', status: 'Completed', cost: 1200, notes: 'pH and ORP probes calibrated.' },
-    { id: 'WO-209', title: 'Podium Leak — Temporary Diversion', type: 'Reactive', asset: 'Podium Waterproofing', assetId: '', tech: 'Waterproofing specialist', priority: 'High', date: '2026-06-28', due: '2026-06-29', status: 'Completed', cost: 14500, notes: 'Interim diversion; permanent works on hold (P-1005).' },
-    { id: 'WO-210', title: 'UPS Battery String — Capacity Test', type: 'Preventive', asset: 'UPS System 200 kVA', assetId: 'A-11', tech: 'Eaton Vendor', priority: 'Medium', date: '2026-08-18', due: '2026-08-18', status: 'Scheduled', cost: 3200, notes: 'Discharge test to confirm string health before 2027 replacement.' },
-    { id: 'WO-211', title: 'LV Switchgear — Thermographic Survey', type: 'Preventive', asset: 'Main LV Switchgear & Panels', assetId: 'A-08', tech: 'Third-party thermography', priority: 'High', date: '2026-08-25', due: '2026-08-25', status: 'Scheduled', cost: 7400, notes: 'Annual survey; shutdown not required.' },
-    { id: 'WO-212', title: 'Common Area Lighting — Schedule Review', type: 'Preventive', asset: 'Common Area Lighting Controls', assetId: 'A-14', tech: 'Dynalite Vendor', priority: 'Low', date: '2026-09-28', due: '2026-09-28', status: 'Scheduled', cost: 0, notes: 'Align schedules with occupancy and daylight hours.' }
-  ];
+    {
+        "id": "WO-201",
+        "title": "Chiller Unit 1 — Monthly PPM",
+        "type": "Preventive",
+        "asset": "Chiller Unit 1 (Carrier 400TR)",
+        "assetId": "A-01",
+        "tech": "Bikash Rai",
+        "priority": "High",
+        "date": "2026-08-04",
+        "due": "2026-08-04",
+        "status": "Scheduled",
+        "cost": 0,
+        "notes": "Compressor amps, condenser approach, oil analysis."
+    },
+    {
+        "id": "WO-202",
+        "title": "Fire Pump Set — Weekly Churn Test",
+        "type": "Preventive",
+        "asset": "Fire Pump Set (Electric + Jockey)",
+        "assetId": "A-03",
+        "tech": "Suresh KC",
+        "priority": "Critical",
+        "date": "2026-08-07",
+        "due": "2026-08-07",
+        "status": "Scheduled",
+        "cost": 0,
+        "notes": "Record pressure at churn and 100% flow."
+    },
+    {
+        "id": "WO-203",
+        "title": "Elevator Bank 1 — Car 3 Door Fault",
+        "type": "Reactive",
+        "asset": "Elevator Bank 1 (4 cars)",
+        "assetId": "A-04",
+        "tech": "OTIS Vendor",
+        "priority": "High",
+        "date": "2026-08-01",
+        "due": "2026-08-03",
+        "status": "In Progress",
+        "cost": 4200,
+        "notes": "Door operator PCB suspected; resident notice issued."
+    },
+    {
+        "id": "WO-204",
+        "title": "Generator 1250 kVA — Monthly Load Test",
+        "type": "Preventive",
+        "asset": "Standby Generator 1250 kVA",
+        "assetId": "A-05",
+        "tech": "Bikash Rai",
+        "priority": "High",
+        "date": "2026-08-11",
+        "due": "2026-08-11",
+        "status": "Scheduled",
+        "cost": 0,
+        "notes": "30-minute run at 80% load; coolant and fuel check."
+    },
+    {
+        "id": "WO-205",
+        "title": "Service Lift Tower B — Door Interlock",
+        "type": "Reactive",
+        "asset": "Service Lift (Tower B)",
+        "assetId": "A-13",
+        "tech": "KONE Vendor",
+        "priority": "Critical",
+        "date": "2026-08-02",
+        "due": "2026-08-02",
+        "status": "Overdue",
+        "cost": 0,
+        "notes": "Lift locked off; vendor attendance overdue — escalated."
+    },
+    {
+        "id": "WO-206",
+        "title": "Fire Alarm Panel — Loop Diagnostics",
+        "type": "Reactive",
+        "asset": "Addressable Fire Alarm Panel",
+        "assetId": "A-09",
+        "tech": "Honeywell Gent",
+        "priority": "Critical",
+        "date": "2026-08-02",
+        "due": "2026-08-06",
+        "status": "In Progress",
+        "cost": 9500,
+        "notes": "Loop 3 intermittent faults pre-replacement."
+    },
+    {
+        "id": "WO-207",
+        "title": "AHU Set — Filter & Belt Replacement",
+        "type": "Preventive",
+        "asset": "AHU Set — Levels 1-8",
+        "assetId": "A-12",
+        "tech": "MEP Team",
+        "priority": "Medium",
+        "date": "2026-07-30",
+        "due": "2026-07-30",
+        "status": "Completed",
+        "cost": 6800,
+        "notes": "All 12 AHUs completed; filters logged."
+    },
+    {
+        "id": "WO-208",
+        "title": "Pool Dosing Controller — Calibration",
+        "type": "Preventive",
+        "asset": "Pool Filtration & Dosing Unit",
+        "assetId": "A-06",
+        "tech": "Suresh KC",
+        "priority": "Medium",
+        "date": "2026-07-20",
+        "due": "2026-07-20",
+        "status": "Completed",
+        "cost": 1200,
+        "notes": "pH and ORP probes calibrated."
+    },
+    {
+        "id": "WO-209",
+        "title": "Podium Leak — Temporary Diversion",
+        "type": "Reactive",
+        "asset": "Podium Waterproofing",
+        "assetId": "",
+        "tech": "Waterproofing specialist",
+        "priority": "High",
+        "date": "2026-06-28",
+        "due": "2026-06-29",
+        "status": "Completed",
+        "cost": 14500,
+        "notes": "Interim diversion; permanent works on hold (P-1005)."
+    },
+    {
+        "id": "WO-210",
+        "title": "UPS Battery String — Capacity Test",
+        "type": "Preventive",
+        "asset": "UPS System 200 kVA",
+        "assetId": "A-11",
+        "tech": "Eaton Vendor",
+        "priority": "Medium",
+        "date": "2026-08-18",
+        "due": "2026-08-18",
+        "status": "Scheduled",
+        "cost": 3200,
+        "notes": "Discharge test to confirm string health before 2027 replacement."
+    },
+    {
+        "id": "WO-211",
+        "title": "LV Switchgear — Thermographic Survey",
+        "type": "Preventive",
+        "asset": "Main LV Switchgear & Panels",
+        "assetId": "A-08",
+        "tech": "Third-party thermography",
+        "priority": "High",
+        "date": "2026-08-25",
+        "due": "2026-08-25",
+        "status": "Scheduled",
+        "cost": 7400,
+        "notes": "Annual survey; shutdown not required."
+    },
+    {
+        "id": "WO-212",
+        "title": "Common Area Lighting — Schedule Review",
+        "type": "Preventive",
+        "asset": "Common Area Lighting Controls",
+        "assetId": "A-14",
+        "tech": "Dynalite Vendor",
+        "priority": "Low",
+        "date": "2026-09-28",
+        "due": "2026-09-28",
+        "status": "Scheduled",
+        "cost": 0,
+        "notes": "Align schedules with occupancy and daylight hours."
+    }
+];
 
-    db.awards = [
-    { id: uid('aw'), title: 'NEBOSH Award in Health & Safety at Work', issuer: 'DAMAC / NEBOSH', year: '2020', date: '2020-01-03', category: 'Award', desc: 'Conferred on 03 Jan 2020 in DAMAC for exceptional occupational safety and site risk control.' },
-    { id: uid('aw'), title: 'DAMAC Appreciation Award', issuer: 'DAMAC Hotel & Resorts', year: '2021', date: '2021-04-15', category: 'Award', desc: 'Corporate recognition for outstanding engineering operations, building reliability and asset care.' },
-    { id: uid('aw'), title: 'Employee Of Month Award', issuer: 'Green Point Technical Services', year: '2016', date: '2016-08-20', category: 'Award', desc: 'Awarded for outstanding performance, excellent services & dedication in technical facility operations.' },
-    { id: uid('aw'), title: "D'crowned For The Month Appreciation Award", issuer: 'DAMAC Hotel & Resorts', year: '2019', date: '2019-11-10', category: 'Award', desc: 'Prestigious hospitality award for exceptional customer satisfaction and engineering responsiveness.' },
-    { id: uid('aw'), title: 'Employee of Month Award', issuer: 'LOAMS (Luxury Owner Association Management)', year: '2023', date: '2023-05-18', category: 'Award', desc: 'Awarded for outstanding performance, excellent services and dedication in owner association management.' }
-  ];
+  db.awards = [
+    {
+        "id": "aw-1",
+        "title": "NEBOSH Award in Health & Safety at Work",
+        "issuer": "DAMAC / NEBOSH",
+        "year": "2020",
+        "date": "2020-01-03",
+        "org": "DAMAC · 03 Jan 2020",
+        "category": "Award",
+        "desc": "Conferred on 03 Jan 2020 in DAMAC for exceptional occupational safety and site risk control."
+    },
+    {
+        "id": "aw-2",
+        "title": "DAMAC Appreciation Award",
+        "issuer": "DAMAC Hotel & Resorts",
+        "year": "2021",
+        "date": "2021-04-15",
+        "org": "DAMAC Hotel & Resorts",
+        "category": "Award",
+        "desc": "Corporate recognition for outstanding engineering operations, building reliability and asset care."
+    },
+    {
+        "id": "aw-3",
+        "title": "D'crowned For The Month Appreciation Award",
+        "issuer": "DAMAC Hotel & Resorts",
+        "year": "2019",
+        "date": "2019-11-10",
+        "org": "DAMAC Hotel & Resorts",
+        "category": "Award",
+        "desc": "Hospitality recognition for superior customer experience and engineering reliability."
+    },
+    {
+        "id": "aw-4",
+        "title": "Employee of the Month Award",
+        "issuer": "Green Point Technical Services",
+        "year": "2016",
+        "date": "2016-08-20",
+        "org": "Green Point Technical Services",
+        "category": "Award",
+        "desc": "Awarded for outstanding performance, excellent services & dedication in technical facility operations."
+    },
+    {
+        "id": "aw-5",
+        "title": "Employee of the Month Award",
+        "issuer": "LOAMS",
+        "year": "2023",
+        "date": "2023-05-18",
+        "org": "LOAMS",
+        "category": "Award",
+        "desc": "Awarded for outstanding performance and dedication in luxury owner association management."
+    }
+];
 
   db.certifications = [
-    { id: uid('c'), name: 'M-100: The Essentials of Management Community Association', issuer: 'CAI (Community Associations Institute)', year: '2022', date: '2022-06-01', credential: 'M-100 Certified', status: 'Active', category: 'Certification', skills: ['Community Association Management', 'Facilities Management'] },
-    { id: uid('c'), name: 'NEBOSH Award in International General Certificate', issuer: 'NEBOSH (undertaken at DAMAC)', year: '2021', date: '2021-01-20', credential: 'IGC Certified', status: 'Active', category: 'Certification', skills: ['Health, Safety & Environment', 'ISO 45001'] },
-    { id: uid('c'), name: 'Certified Facility Manager (CFM)', issuer: 'MEFMA (Middle East Facility Management Association)', year: 'Certified', date: '2023-03-15', credential: 'MEFMA Certified', status: 'Active', category: 'Certification', skills: ['Facilities Management', 'Asset Management'] },
-    { id: uid('c'), name: 'Level - 1 Fire Warden Certificate', issuer: 'DCD (Dubai Civil Defence)', year: 'Certified', date: '2020-09-12', credential: 'Fire Warden DCD', status: 'Active', category: 'Certification', skills: ['Fire & Life Safety', 'Emergency Response'] },
-    { id: uid('c'), name: 'Level – 2 First Aid Training Certificate', issuer: 'DCD Training Center Dubai', year: 'Certified', date: '2020-10-05', credential: 'DCD First Aid Level 2', status: 'Active', category: 'Certification', skills: ['Health & Safety', 'First Aid'] },
-    { id: uid('c'), name: 'TOT (Training of Trainers)', issuer: 'CTEVT (Council for Technical Education & Vocational Training)', year: '2013', date: '2013-02-07', credential: 'CTEVT Certified Trainer', status: 'Active', category: 'Training', skills: ['Team Leadership', 'Technical Coaching'] },
-    { id: uid('c'), name: 'Diploma in Hardware & Networking', issuer: "Master Mind Int'l Education", year: '2011', date: '2011-07-31', credential: '18-Month Diploma', status: 'Active', category: 'Training', skills: ['Hardware', 'Networking', 'IT Infrastructure'] },
-    { id: uid('c'), name: 'Diploma in Application Programming', issuer: "Master Mind Int'l Education", year: '2011', date: '2011-01-31', credential: '12-Month Diploma', status: 'Active', category: 'Training', skills: ['Programming', 'Database Administration'] },
-    { id: uid('c'), name: 'Light Motor Vehicle Driving License', issuer: 'UAE Government', year: '2017', date: '2017-01-17', credential: 'UAE License 17-Jan-2017', status: 'Active', category: 'Licence', skills: ['Emergency Dispatch', 'Multi-Site Mobility'] }
-  ];
+    {
+        "id": "c-mvb2p1lsldh9f",
+        "name": "Certified Facility Manager (CFM)",
+        "issuer": "MEFMA — Middle East Facility Management Association",
+        "year": "Certified",
+        "date": "",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Facilities Management",
+            "Asset Management"
+        ]
+    },
+    {
+        "id": "c-mvb2p1ls9ckiu",
+        "name": "NEBOSH International General Certificate",
+        "issuer": "NEBOSH (undertaken at DAMAC)",
+        "year": "2021",
+        "date": "2021-01-20",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Health, Safety & Environment"
+        ]
+    },
+    {
+        "id": "c-mvb2p1ls909lp",
+        "name": "NEBOSH Award in Health & Safety at Work",
+        "issuer": "DAMAC",
+        "year": "2020",
+        "date": "2020-01-03",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Health, Safety & Environment"
+        ]
+    },
+    {
+        "id": "c-mvb2p1lsz9rs1",
+        "name": "M-100: The Essentials of Management for Community Associations",
+        "issuer": "CAI — Community Associations Institute",
+        "year": "2022",
+        "date": "2022-06-01",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Community Association Management"
+        ]
+    },
+    {
+        "id": "c-mvb2p1lsm6fnb",
+        "name": "Level 1 Fire Warden Certificate",
+        "issuer": "DCD — Dubai Civil Defence",
+        "year": "—",
+        "date": "",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Fire & Life Safety"
+        ]
+    },
+    {
+        "id": "c-mvb2p1lsuu47u",
+        "name": "Level 2 First Aid Training Certificate",
+        "issuer": "DCD Training Center, Dubai",
+        "year": "—",
+        "date": "",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Health, Safety & Environment"
+        ]
+    },
+    {
+        "id": "c-mvb2p1lsh7vij",
+        "name": "Training of Trainers (TOT)",
+        "issuer": "CTEVT — Council for Technical Education & Vocational Training",
+        "year": "2013",
+        "date": "2013-02-07",
+        "credential": "",
+        "status": "Active",
+        "skills": [
+            "Team Leadership & Development"
+        ]
+    },
+    {
+        "id": "c-mvb2p1lsf3baq",
+        "name": "Light Motor Vehicle Driving Licence",
+        "issuer": "UAE Government",
+        "year": "2017",
+        "date": "2017-01-17",
+        "credential": "",
+        "status": "Active",
+        "skills": []
+    },
+    {
+        "id": "c-mvb2p1lsopsre",
+        "name": "Diploma in Hardware & Networking",
+        "issuer": "Master Mind Int'l Education",
+        "year": "2011",
+        "date": "2011-07-01",
+        "credential": "",
+        "status": "Completed",
+        "skills": [
+            "Systems"
+        ]
+    },
+    {
+        "id": "c-mvb2p1lszlemi",
+        "name": "Diploma in Application Programming",
+        "issuer": "Master Mind Int'l Education",
+        "year": "2011",
+        "date": "2011-01-01",
+        "credential": "",
+        "status": "Completed",
+        "skills": [
+            "Systems"
+        ]
+    }
+];
 
   db.education = [
-    { id: uid('e'), degree: 'B.Tech. (Electrical Engineering)', institution: 'Manav Bharti University', location: 'Himachal Pradesh, India', year: '2018', grade: '', notes: 'Four-year Electrical Engineering degree underpinning high-voltage substations, central chiller plants, MEP operations and BMS telemetry.' },
-    { id: uid('e'), degree: 'Diploma (Electrical & Electronics Engineering)', institution: 'Purwanachal Engineering Campus', location: 'Dharan, Nepal (Attested by UAE Embassy)', year: '2007', grade: '', notes: 'Three-year engineering diploma officially attested by the UAE Embassy for formal UAE engineering and FM credential recognition.' }
-  ];
+    {
+        "id": "e-mvb2p1lsk1ns1",
+        "degree": "B.Tech — Electrical Engineering",
+        "institution": "Manav Bharti University",
+        "location": "Himachal Pradesh, India",
+        "year": "2018",
+        "grade": "",
+        "notes": "Electrical engineering specialisation underpinning MEP and power systems scope."
+    },
+    {
+        "id": "e-mvb2p1lsh7gfa",
+        "degree": "Diploma — Electrical & Electronics Engineering",
+        "institution": "Purwanachal Engineering Campus",
+        "location": "Dharan, Nepal (attested by UAE Embassy)",
+        "year": "2007",
+        "grade": "",
+        "notes": "Attested by the UAE Embassy — accepted for UAE professional recognition."
+    }
+];
 
   db.testimonials = [
-    { id: uid('t'), name: 'Property Director', role: 'Aldar Residential Portfolio', rating: 5, date: '2026-05-12', approved: true, text: 'Arjun brought our reactive maintenance back under control within two quarters. Owners noticed the difference immediately, and the reporting discipline he introduced is now the portfolio standard.' },
-    { id: uid('t'), name: 'Development Manager', role: 'Deyaar', rating: 5, date: '2024-08-20', approved: true, text: 'Meticulous with compliance documentation and always ahead of Civil Defence audits. He manages budgets the way an owner would.' },
-    { id: uid('t'), name: 'MEP Contractor Lead', role: 'Chiller Retrofit Programme', rating: 4, date: '2024-07-02', approved: true, text: 'Clear scopes, fair bid evaluations and a genuine understanding of the systems he manages. Site coordination was among the smoothest we have worked with.' },
-    { id: uid('t'), name: 'Owners Association Chairman', role: 'Tower A & B', rating: 5, date: '2025-11-08', approved: true, text: 'Transparent communication through a difficult waterproofing issue. He explained the options, the cost implications and the risk — and then delivered.' },
-    { id: uid('t'), name: 'Senior Facilities Manager', role: 'DAMAC Hotel & Resorts', rating: 5, date: '2021-06-15', approved: true, text: 'Reliable, hands-on and calm under pressure. Arjun was the person we sent to assets that needed to be turned around.' }
-  ];
+    {
+        "id": "t-mvb2p1lswi77x",
+        "name": "Property Director",
+        "role": "Aldar Residential Portfolio",
+        "rating": 5,
+        "date": "2026-05-12",
+        "approved": true,
+        "text": "Arjun brought our reactive maintenance back under control within two quarters. Owners noticed the difference immediately, and the reporting discipline he introduced is now the portfolio standard."
+    },
+    {
+        "id": "t-mvb2p1lsba3ac",
+        "name": "Development Manager",
+        "role": "Deyaar",
+        "rating": 5,
+        "date": "2024-08-20",
+        "approved": true,
+        "text": "Meticulous with compliance documentation and always ahead of Civil Defence audits. He manages budgets the way an owner would."
+    },
+    {
+        "id": "t-mvb2p1ls10lz1",
+        "name": "MEP Contractor Lead",
+        "role": "Chiller Retrofit Programme",
+        "rating": 4,
+        "date": "2024-07-02",
+        "approved": true,
+        "text": "Clear scopes, fair bid evaluations and a genuine understanding of the systems he manages. Site coordination was among the smoothest we have worked with."
+    },
+    {
+        "id": "t-mvb2p1lsk3gu3",
+        "name": "Owners Association Chairman",
+        "role": "Tower A & B",
+        "rating": 5,
+        "date": "2025-11-08",
+        "approved": true,
+        "text": "Transparent communication through a difficult waterproofing issue. He explained the options, the cost implications and the risk — and then delivered."
+    },
+    {
+        "id": "t-mvb2p1lsoi3xu",
+        "name": "Senior Facilities Manager",
+        "role": "DAMAC Hotel & Resorts",
+        "rating": 5,
+        "date": "2021-06-15",
+        "approved": true,
+        "text": "Reliable, hands-on and calm under pressure. Arjun was the person we sent to assets that needed to be turned around."
+    }
+];
 
   db.blog = [
     {
-      id: uid('b'), title: 'Building a PPM Calendar That Survives a Dubai Summer', category: 'Maintenance Strategy',
-      date: '2026-07-14', author: 'Arjun Singh', tags: ['PPM', 'HVAC', 'Summer'], published: true, readMins: 6,
-      excerpt: 'Chiller loading peaks between June and September. If your preventive calendar treats those months like any other, you have already lost control of the season.',
-      body: 'The single most common PPM design flaw I see in UAE residential towers is a flat annual schedule. Chiller plants, pumps and AHUs do not experience a flat year — they experience a load curve that roughly doubles between June and September.\n\nStart by shifting inspection density, not inspection count. Condenser cleaning, water treatment verification and approach-temperature checks should be weekly during peak and fortnightly outside it. Keep statutory tests exactly where the authority requires them and move everything else around that spine.\n\nSecond, protect the shutdown window. PPM that needs a plant shutdown should be scheduled outside peak so you are never choosing between maintenance and resident comfort. Build a two-week float into the calendar so a failed attempt does not cascade.\n\nFinally, report the season, not the month. A one-page peak-readiness summary — plant availability, approach temperatures, water quality, outstanding defects — gives owners something they can actually act on.'
+        "id": "b-mvb2p1lsvpzh8",
+        "title": "Building a PPM Calendar That Survives a Dubai Summer",
+        "category": "Maintenance Strategy",
+        "date": "2026-07-14",
+        "author": "Arjun Singh",
+        "tags": [
+            "PPM",
+            "HVAC",
+            "Summer"
+        ],
+        "published": true,
+        "readMins": 6,
+        "excerpt": "Chiller loading peaks between June and September. If your preventive calendar treats those months like any other, you have already lost control of the season.",
+        "body": "The single most common PPM design flaw I see in UAE residential towers is a flat annual schedule. Chiller plants, pumps and AHUs do not experience a flat year — they experience a load curve that roughly doubles between June and September.\n\nStart by shifting inspection density, not inspection count. Condenser cleaning, water treatment verification and approach-temperature checks should be weekly during peak and fortnightly outside it. Keep statutory tests exactly where the authority requires them and move everything else around that spine.\n\nSecond, protect the shutdown window. PPM that needs a plant shutdown should be scheduled outside peak so you are never choosing between maintenance and resident comfort. Build a two-week float into the calendar so a failed attempt does not cascade.\n\nFinally, report the season, not the month. A one-page peak-readiness summary — plant availability, approach temperatures, water quality, outstanding defects — gives owners something they can actually act on."
     },
     {
-      id: uid('b'), title: 'Civil Defence Readiness: What Actually Gets Audited', category: 'Compliance',
-      date: '2026-06-02', author: 'Arjun Singh', tags: ['Civil Defence', 'Fire Safety', 'DCD'], published: true, readMins: 5,
-      excerpt: 'Most failed inspections are not failures of equipment. They are failures of evidence — the system works, but the record does not prove it.',
-      body: 'When Civil Defence attends, they are assessing two things: is the system functional, and can you demonstrate that it has been maintained in accordance with the approved design?\n\nThat second question is where facilities teams lose time. Keep the cause-and-effect matrix current with every modification — the moment you move a detector, the matrix is stale. Log every weekly churn test with pressures, not just a tick. Retain the DCD-approved drawings with revision numbers matching the as-built installation.\n\nFire warden and evacuation drill records should be dated, signed and cross-referenced to training certificates. Where a contractor performed works, keep their DCD approval documentation alongside your own records.\n\nDo this and the inspection becomes a records review rather than a defence.'
+        "id": "b-mvb2p1lsxajlo",
+        "title": "Civil Defence Readiness: What Actually Gets Audited",
+        "category": "Compliance",
+        "date": "2026-06-02",
+        "author": "Arjun Singh",
+        "tags": [
+            "Civil Defence",
+            "Fire Safety",
+            "DCD"
+        ],
+        "published": true,
+        "readMins": 5,
+        "excerpt": "Most failed inspections are not failures of equipment. They are failures of evidence — the system works, but the record does not prove it.",
+        "body": "When Civil Defence attends, they are assessing two things: is the system functional, and can you demonstrate that it has been maintained in accordance with the approved design?\n\nThat second question is where facilities teams lose time. Keep the cause-and-effect matrix current with every modification — the moment you move a detector, the matrix is stale. Log every weekly churn test with pressures, not just a tick. Retain the DCD-approved drawings with revision numbers matching the as-built installation.\n\nFire warden and evacuation drill records should be dated, signed and cross-referenced to training certificates. Where a contractor performed works, keep their DCD approval documentation alongside your own records.\n\nDo this and the inspection becomes a records review rather than a defence."
     },
     {
-      id: uid('b'), title: 'CAFM Data Discipline: Why Your Asset Register Is Lying to You', category: 'CAFM & Data',
-      date: '2026-04-18', author: 'Arjun Singh', tags: ['CAFM', 'Asset Register', 'Data'], published: true, readMins: 7,
-      excerpt: 'A CAFM system is only as good as the naming convention behind it. Duplicate assets and orphaned work orders quietly destroy your reporting credibility.',
-      body: 'I have opened asset registers containing three separate entries for the same chiller, each with a different installation date. The plant is the same; the records are not. Any capital planning built on that register is guesswork.\n\nFix the foundation first: one tagging convention, one naming standard, one location hierarchy. Asset tags should be physically affixed and physically verifiable — if the tag exists only in software, it will drift.\n\nThen close the loop between work orders and assets. Every work order references an asset ID. If the dropdown allows free text, someone will use it.\n\nWith clean links you can answer the questions that matter to owners: cost per asset, failure frequency, mean time between failures, and replacement forecast. That is when CAFM stops being an administrative burden and starts being a decision tool.'
+        "id": "b-mvb2p1lsp5zk2",
+        "title": "CAFM Data Discipline: Why Your Asset Register Is Lying to You",
+        "category": "CAFM & Data",
+        "date": "2026-04-18",
+        "author": "Arjun Singh",
+        "tags": [
+            "CAFM",
+            "Asset Register",
+            "Data"
+        ],
+        "published": true,
+        "readMins": 7,
+        "excerpt": "A CAFM system is only as good as the naming convention behind it. Duplicate assets and orphaned work orders quietly destroy your reporting credibility.",
+        "body": "I have opened asset registers containing three separate entries for the same chiller, each with a different installation date. The plant is the same; the records are not. Any capital planning built on that register is guesswork.\n\nFix the foundation first: one tagging convention, one naming standard, one location hierarchy. Asset tags should be physically affixed and physically verifiable — if the tag exists only in software, it will drift.\n\nThen close the loop between work orders and assets. Every work order references an asset ID. If the dropdown allows free text, someone will use it.\n\nWith clean links you can answer the questions that matter to owners: cost per asset, failure frequency, mean time between failures, and replacement forecast. That is when CAFM stops being an administrative burden and starts being a decision tool."
     },
     {
-      id: uid('b'), title: 'Writing an Owner-Association Budget a Non-Technical Board Will Approve', category: 'Budgeting',
-      date: '2026-02-26', author: 'Arjun Singh', tags: ['Budget', 'Owners Association', 'Service Charge'], published: true, readMins: 6,
-      excerpt: 'Boards approve clarity, not spreadsheets. Present the risk, the cost of inaction and the phasing — in that order.',
-      body: 'Facilities budgets are usually rejected for one reason: the board cannot see the consequence of not spending. A line item called "chiller overhaul — AED 180,000" competes poorly against a lower service charge.\n\nLead with condition and risk. Show the asset, its age against expected life, the failure consequence, and the likelihood. Photographs of a scaled condenser do more work than any spreadsheet.\n\nThen give the numbers three ways: the full scope, a phased approach, and the do-nothing scenario with its expected cost. Boards will often choose the phased option — which is a win, because it is funded and it starts.\n\nFinally, report actual against budget monthly, and flag variance immediately rather than at year end. Credibility on small numbers buys authority on large ones.'
+        "id": "b-mvb2p1lsop5ra",
+        "title": "Writing an Owner-Association Budget a Non-Technical Board Will Approve",
+        "category": "Budgeting",
+        "date": "2026-02-26",
+        "author": "Arjun Singh",
+        "tags": [
+            "Budget",
+            "Owners Association",
+            "Service Charge"
+        ],
+        "published": true,
+        "readMins": 6,
+        "excerpt": "Boards approve clarity, not spreadsheets. Present the risk, the cost of inaction and the phasing — in that order.",
+        "body": "Facilities budgets are usually rejected for one reason: the board cannot see the consequence of not spending. A line item called \"chiller overhaul — AED 180,000\" competes poorly against a lower service charge.\n\nLead with condition and risk. Show the asset, its age against expected life, the failure consequence, and the likelihood. Photographs of a scaled condenser do more work than any spreadsheet.\n\nThen give the numbers three ways: the full scope, a phased approach, and the do-nothing scenario with its expected cost. Boards will often choose the phased option — which is a win, because it is funded and it starts.\n\nFinally, report actual against budget monthly, and flag variance immediately rather than at year end. Credibility on small numbers buys authority on large ones."
     },
     {
-      id: uid('b'), title: 'The 24×7 Mindset: Structuring an FM Team That Does Not Burn Out', category: 'Leadership',
-      date: '2026-01-20', author: 'Arjun Singh', tags: ['Leadership', 'Team', 'Operations'], published: true, readMins: 5,
-      excerpt: 'Round-the-clock coverage is a system design problem before it is a rostering problem. Get escalation right and the night shift stops calling you.',
-      body: 'A 24×7 operation fails in predictable ways: unclear escalation, undocumented procedures, and a supervisor who becomes the single point of knowledge.\n\nWrite the escalation matrix with names, thresholds and timeframes. Define what may be handled in-house overnight and what must wake a manager. Publish it where staff actually look.\n\nInvest in the first responder. A technician who can read a BMS alarm, isolate a pump safely and communicate clearly to a resident prevents most escalations. Training here pays back immediately.\n\nRotate the roster with the load, not the calendar. Give the people who carry the peak months their leave outside it — and say so in advance, so it feels like a plan rather than a favour.'
+        "id": "b-mvb2p1lsb5t2z",
+        "title": "The 24×7 Mindset: Structuring an FM Team That Does Not Burn Out",
+        "category": "Leadership",
+        "date": "2026-01-20",
+        "author": "Arjun Singh",
+        "tags": [
+            "Leadership",
+            "Team",
+            "Operations"
+        ],
+        "published": true,
+        "readMins": 5,
+        "excerpt": "Round-the-clock coverage is a system design problem before it is a rostering problem. Get escalation right and the night shift stops calling you.",
+        "body": "A 24×7 operation fails in predictable ways: unclear escalation, undocumented procedures, and a supervisor who becomes the single point of knowledge.\n\nWrite the escalation matrix with names, thresholds and timeframes. Define what may be handled in-house overnight and what must wake a manager. Publish it where staff actually look.\n\nInvest in the first responder. A technician who can read a BMS alarm, isolate a pump safely and communicate clearly to a resident prevents most escalations. Training here pays back immediately.\n\nRotate the roster with the load, not the calendar. Give the people who carry the peak months their leave outside it — and say so in advance, so it feels like a plan rather than a favour."
     },
     {
-      id: uid('b'), title: 'Vendor Performance Reviews That Change Behaviour', category: 'Contracts',
-      date: '2025-12-05', author: 'Arjun Singh', tags: ['SLA', 'Vendor', 'Contracts'], published: true, readMins: 5,
-      excerpt: 'A monthly review that only discusses complaints is a complaint meeting. Structure it around KPI evidence and it becomes a performance tool.',
-      body: 'Effective vendor management starts with KPIs that are measurable from your own data, not the vendor report. Response time, first-time fix rate, PPM completion, repeat failures on the same asset, and safety observations are all defensible and hard to dispute.\n\nCirculate the scorecard before the meeting. Discussion should interpret the numbers, not discover them.\n\nSeparate the conversation into three parts: what the data says, what the site says, and what changes next month with owners and dates. End every review with written actions.\n\nFinally, use the incentive structure you wrote. If the contract only penalises, you will get compliance. If it recognises sustained performance, you get cooperation.'
+        "id": "b-mvb2p1lsacnqn",
+        "title": "Vendor Performance Reviews That Change Behaviour",
+        "category": "Contracts",
+        "date": "2025-12-05",
+        "author": "Arjun Singh",
+        "tags": [
+            "SLA",
+            "Vendor",
+            "Contracts"
+        ],
+        "published": true,
+        "readMins": 5,
+        "excerpt": "A monthly review that only discusses complaints is a complaint meeting. Structure it around KPI evidence and it becomes a performance tool.",
+        "body": "Effective vendor management starts with KPIs that are measurable from your own data, not the vendor report. Response time, first-time fix rate, PPM completion, repeat failures on the same asset, and safety observations are all defensible and hard to dispute.\n\nCirculate the scorecard before the meeting. Discussion should interpret the numbers, not discover them.\n\nSeparate the conversation into three parts: what the data says, what the site says, and what changes next month with owners and dates. End every review with written actions.\n\nFinally, use the incentive structure you wrote. If the contract only penalises, you will get compliance. If it recognises sustained performance, you get cooperation."
     }
-  ];
+];
 
   db.messages = [
-    { id: uid('m'), name: 'Fatima Al Mansoori', email: 'f.almansoori@example.ae', company: 'Aldar Communities', subject: 'Senior FM role — Abu Dhabi portfolio', message: 'Good afternoon Arjun. We are recruiting for a Senior Facilities Manager covering a mixed-use portfolio. Your Aldar experience is directly relevant. Would you be open to a conversation this week?', date: '2026-08-01T09:14:00.000Z', read: false, source: 'portfolio' },
-    { id: uid('m'), name: 'Daniel Okafor', email: 'd.okafor@fmcontractor.example', company: 'Emrill', subject: 'Chiller retrofit reference', message: 'We are bidding for a chiller retrofit and would value a reference on your Tower A project — particularly the energy savings methodology you used.', date: '2026-07-29T14:02:00.000Z', read: true, source: 'portfolio' }
-  ];
+    {
+        "id": "m-mvb2p1ls5io28",
+        "name": "Fatima Al Mansoori",
+        "email": "f.almansoori@example.ae",
+        "company": "Aldar Communities",
+        "subject": "Senior FM role — Abu Dhabi portfolio",
+        "message": "Good afternoon Arjun. We are recruiting for a Senior Facilities Manager covering a mixed-use portfolio. Your Aldar experience is directly relevant. Would you be open to a conversation this week?",
+        "date": "2026-08-01T09:14:00.000Z",
+        "read": false,
+        "source": "portfolio"
+    },
+    {
+        "id": "m-mvb2p1lsrz64c",
+        "name": "Daniel Okafor",
+        "email": "d.okafor@fmcontractor.example",
+        "company": "Emrill",
+        "subject": "Chiller retrofit reference",
+        "message": "We are bidding for a chiller retrofit and would value a reference on your Tower A project — particularly the energy savings methodology you used.",
+        "date": "2026-07-29T14:02:00.000Z",
+        "read": true,
+        "source": "portfolio"
+    }
+];
 
   db.notifications = [
-    { id: uid('n'), title: 'Work order overdue', msg: 'WO-205 Service Lift Tower B door interlock has passed its due date.', type: 'danger', date: '2026-08-02T06:00:00.000Z', read: false, panel: 'maintenance' },
-    { id: uid('n'), title: 'PPM due in 2 days', msg: 'WO-204 Generator monthly load test is due on 11 Aug 2026.', type: 'warn', date: '2026-08-02T05:00:00.000Z', read: false, panel: 'maintenance' },
-    { id: uid('n'), title: 'Project milestone', msg: 'Fire Alarm System Upgrade — DCD drawing approval completed.', type: 'info', date: '2026-07-31T11:20:00.000Z', read: true, panel: 'projects' },
-    { id: uid('n'), title: 'New enquiry', msg: 'Fatima Al Mansoori submitted an enquiry about a Senior FM role.', type: 'ok', date: '2026-08-01T09:14:00.000Z', read: false, panel: 'contact' }
-  ];
+    {
+        "id": "n-mvb2p1lswgdcn",
+        "title": "Work order overdue",
+        "msg": "WO-205 Service Lift Tower B door interlock has passed its due date.",
+        "type": "danger",
+        "date": "2026-08-02T06:00:00.000Z",
+        "read": false,
+        "panel": "maintenance"
+    },
+    {
+        "id": "n-mvb2p1lskd0mt",
+        "title": "PPM due in 2 days",
+        "msg": "WO-204 Generator monthly load test is due on 11 Aug 2026.",
+        "type": "warn",
+        "date": "2026-08-02T05:00:00.000Z",
+        "read": false,
+        "panel": "maintenance"
+    },
+    {
+        "id": "n-mvb2p1ls9x2br",
+        "title": "Project milestone",
+        "msg": "Fire Alarm System Upgrade — DCD drawing approval completed.",
+        "type": "info",
+        "date": "2026-07-31T11:20:00.000Z",
+        "read": true,
+        "panel": "projects"
+    },
+    {
+        "id": "n-mvb2p1lsxkja7",
+        "title": "New enquiry",
+        "msg": "Fatima Al Mansoori submitted an enquiry about a Senior FM role.",
+        "type": "ok",
+        "date": "2026-08-01T09:14:00.000Z",
+        "read": false,
+        "panel": "contact"
+    }
+];
 
   db.activity = [
-    { id: uid('a'), msg: 'Portfolio platform initialised with CV dataset', user: 'System', ts: nowISO(), kind: 'system' },
-    { id: uid('a'), msg: 'Admin logged in', user: 'Admin', ts: nowISO(), kind: 'auth' }
-  ];
+    {
+        "id": "a-mvb2p1ls8topa",
+        "msg": "Portfolio platform initialised with CV dataset",
+        "user": "System",
+        "ts": "2026-10-16T14:38:38.176Z",
+        "kind": "system"
+    },
+    {
+        "id": "a-mvb2p1lsp4sv9",
+        "msg": "Admin logged in",
+        "user": "Admin",
+        "ts": "2026-10-16T14:38:38.176Z",
+        "kind": "auth"
+    }
+];
+
+  db.settings = {
+    "theme": "dark",
+    "lang": "en",
+    "currency": "AED",
+    "autoBackup": true,
+    "backupLimit": 8,
+    "animations": false,
+    "compact": false,
+    "org": "Arjun Singh — FM Portfolio"
+};
+
   return db;
 }
